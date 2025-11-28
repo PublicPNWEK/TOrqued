@@ -72,7 +72,7 @@ This will download all the necessary packages. It may take a few minutes.
    **How to find these values:**
    - **SHOPIFY_STORE**: Your store URL without `https://`
    - **SHOPIFY_TOKEN**: From Shopify Admin → Apps → Your App → API credentials
-   - **SHOPIFY_THEME_ID**: From Shopify Admin → Online Store → Themes → Click "..." → Edit code → Look at the URL for the theme ID number
+   - **SHOPIFY_THEME_ID**: From Shopify Admin → Online Store → Themes → Click "Customize" on your theme → Look at the URL, the theme ID is the number after `/themes/` (e.g., `https://admin.shopify.com/store/yourstore/themes/123456789` → the ID is `123456789`)
 
 4. Optional: You can leave the other values as-is for now (they enable advanced features)
 
@@ -86,7 +86,7 @@ npm run dev
 
 You should see a message like:
 ```
-VITE v5.x.x  ready in XXX ms
+VITE v5.4.2  ready in 450 ms
 ➜  Local:   http://localhost:5173/
 ```
 

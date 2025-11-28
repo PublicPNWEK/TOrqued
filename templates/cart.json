@@ -1,16 +1,10 @@
-{% comment %}
-  Cart template
-{% endcomment %}
-
-{% section 'main-cart' %}
-
-{% schema %}
 {
   "name": "Cart",
   "sections": {
-    "main-cart": {
+    "main": {
       "type": "main-cart"
     }
-  }
+  },
+  "order": ["main"]
 }
-{% endschema %}
+

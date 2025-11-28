@@ -1,17 +1,10 @@
-{% comment %}
-  Torqued Dashboard Page Template
-  Use this template for pages where you want to display the Torqued dashboard
-{% endcomment %}
-
-{% section 'torqued-interface' %}
-
-{% schema %}
 {
   "name": "Dashboard Page",
   "sections": {
-    "torqued-interface": {
+    "main": {
       "type": "torqued-interface"
     }
-  }
+  },
+  "order": ["main"]
 }
-{% endschema %}
+

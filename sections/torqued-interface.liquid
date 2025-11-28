@@ -19,7 +19,7 @@ window.__TORQUED_CONFIG__ = {
   enableEdgeCaching: {{ settings.enable_edge_caching | json }},
   enableAiPersonalization: {{ settings.enable_ai_personalization | json }},
   enableFraudDetection: {{ settings.enable_fraud_detection | json }},
-  fullWidthMode: {{ settings.full_width_mode | json }}
+  fullWidthMode: {{ section.settings.full_width | json }}
 };
 </script>
 

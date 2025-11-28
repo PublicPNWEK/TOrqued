@@ -1,16 +1,10 @@
-{% comment %}
-  Product template
-{% endcomment %}
-
-{% section 'main-product' %}
-
-{% schema %}
 {
   "name": "Product",
   "sections": {
-    "main-product": {
+    "main": {
       "type": "main-product"
     }
-  }
+  },
+  "order": ["main"]
 }
-{% endschema %}
+

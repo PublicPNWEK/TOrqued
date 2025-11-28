@@ -1,0 +1,16 @@
+{% comment %}
+  Product template
+{% endcomment %}
+
+{% section 'main-product' %}
+
+{% schema %}
+{
+  "name": "Product",
+  "sections": {
+    "main-product": {
+      "type": "main-product"
+    }
+  }
+}
+{% endschema %}

@@ -47,10 +47,32 @@
 
 ## ?? Deployment Options
 
-### Standard Deployment
+### Option 1: Import Theme from GitHub (Recommended)
+
+You can import this theme directly into your Shopify store:
+
+1. Go to your Shopify Admin → Online Store → Themes
+2. Click "Add theme" → "Connect from GitHub"
+3. Connect your GitHub account and select this repository
+4. The theme will be imported with all necessary structure
+
+Alternatively, use the Shopify CLI:
+```bash
+shopify theme push --store your-store.myshopify.com
+```
+
+### Option 2: Deploy via Scripts (Advanced)
+
+For deploying just the dashboard assets to an existing theme:
+
 ```bash
 npm run shopify:deploy
 ```
+
+Make sure to set these environment variables first:
+- `SHOPIFY_STORE` - Your store domain (e.g., yourstore.myshopify.com)
+- `SHOPIFY_TOKEN` - Your Shopify Admin API access token
+- `SHOPIFY_THEME_ID` - The ID of your theme
 
 ### Edge Deployment (Global Performance)
 ```bash
@@ -61,6 +83,28 @@ npm run deploy:edge
 ```bash
 npm run ai:optimize
 ```
+
+## ?? Theme Structure
+
+This repository is a complete Shopify theme with the following structure:
+
+- `config/` - Theme configuration and settings schema
+- `layout/` - Theme layout files (theme.liquid)
+- `locales/` - Translation files for internationalization
+- `sections/` - Reusable theme sections including the Torqued dashboard
+- `snippets/` - Reusable code snippets
+- `templates/` - Page templates (index, product, collection, cart, etc.)
+- `assets/` - Static assets (CSS, JS, images)
+- `src/` - React application source code
+- `scripts/` - Build and deployment scripts
+
+### Using the Torqued Dashboard
+
+After importing the theme:
+1. Create a new page in your Shopify admin
+2. Select the "Dashboard Page" template
+3. The Torqued dashboard will automatically load on that page
+4. Configure dashboard settings in Theme Settings → Torqued Configuration
 
 ## ?? Advanced Scripts
 - `npm run analyze:bundle` - Advanced bundle analysis
@@ -119,7 +163,7 @@ npm run ai:optimize
 
 ---
 
-**Built for enterprises that demand the best.** This platform doesn't just meet industry standards�it sets new ones.
+**Built for enterprises that demand the best.** This platform doesn't just meet industry standards�it sets new ones.
 
 For detailed implementation guides, see individual documentation files in `/docs`.
 

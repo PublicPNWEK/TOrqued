@@ -1,0 +1,16 @@
+{% comment %}
+  Collection template
+{% endcomment %}
+
+{% section 'main-collection' %}
+
+{% schema %}
+{
+  "name": "Collection",
+  "sections": {
+    "main-collection": {
+      "type": "main-collection"
+    }
+  }
+}
+{% endschema %}

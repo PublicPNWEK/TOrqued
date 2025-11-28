@@ -56,6 +56,8 @@ You can import this theme directly into your Shopify store:
 3. Connect your GitHub account and select this repository
 4. The theme will be imported with all necessary structure
 
+**📖 For detailed import instructions, see [THEME_IMPORT.md](THEME_IMPORT.md)**
+
 Alternatively, use the Shopify CLI:
 ```bash
 shopify theme push --store your-store.myshopify.com

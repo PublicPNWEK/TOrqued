@@ -1,0 +1,18 @@
+import{r as h,g as $}from"./vendor-CVSMKgR5.js";var O={};const g=e=>{let t;const n=new Set,o=(s,v)=>{const i=typeof s=="function"?s(t):s;if(!Object.is(i,t)){const l=t;t=v??typeof i!="object"?i:Object.assign({},t,i),n.forEach(S=>S(t,l))}},r=()=>t,f={setState:o,getState:r,subscribe:s=>(n.add(s),()=>n.delete(s)),destroy:()=>{(O?"production":void 0)!=="production"&&console.warn("[DEPRECATED] The `destroy` method will be unsupported in a future version. Instead use unsubscribe function returned by subscribe. Everything will be garbage-collected if store is garbage-collected."),n.clear()}};return t=e(o,r,f),f},V=e=>e?g(e):g;var b={exports:{}},D={},_={exports:{}},j={};/**
+ * @license React
+ * use-sync-external-store-shim.production.min.js
+ *
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */var p=h;function C(e,t){return e===t&&(e!==0||1/e===1/t)||e!==e&&t!==t}var I=typeof Object.is=="function"?Object.is:C,P=p.useState,R=p.useEffect,T=p.useLayoutEffect,z=p.useDebugValue;function A(e,t){var n=t(),o=P({inst:{value:n,getSnapshot:t}}),r=o[0].inst,u=o[1];return T(function(){r.value=n,r.getSnapshot=t,m(r)&&u({inst:r})},[e,n,t]),R(function(){return m(r)&&u({inst:r}),e(function(){m(r)&&u({inst:r})})},[e]),z(n),n}function m(e){var t=e.getSnapshot;e=e.value;try{var n=t();return!I(e,n)}catch{return!0}}function W(e,t){return t()}var k=typeof window>"u"||typeof window.document>"u"||typeof window.document.createElement>"u"?W:A;j.useSyncExternalStore=p.useSyncExternalStore!==void 0?p.useSyncExternalStore:k;_.exports=j;var q=_.exports;/**
+ * @license React
+ * use-sync-external-store-shim/with-selector.production.min.js
+ *
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */var E=h,B=q;function F(e,t){return e===t&&(e!==0||1/e===1/t)||e!==e&&t!==t}var L=typeof Object.is=="function"?Object.is:F,M=B.useSyncExternalStore,U=E.useRef,G=E.useEffect,H=E.useMemo,J=E.useDebugValue;D.useSyncExternalStoreWithSelector=function(e,t,n,o,r){var u=U(null);if(u.current===null){var a={hasValue:!1,value:null};u.current=a}else a=u.current;u=H(function(){function s(c){if(!v){if(v=!0,i=c,c=o(c),r!==void 0&&a.hasValue){var d=a.value;if(r(d,c))return l=d}return l=c}if(d=l,L(i,c))return d;var x=o(c);return r!==void 0&&r(d,x)?d:(i=c,l=x)}var v=!1,i,l,S=n===void 0?null:n;return[function(){return s(t())},S===null?void 0:function(){return s(S())}]},[t,n,o,r]);var f=M(e,u[0],u[1]);return G(function(){a.hasValue=!0,a.value=f},[f]),J(f),f};b.exports=D;var K=b.exports;const N=$(K);var y={};const{useSyncExternalStoreWithSelector:Q}=N;function X(e,t=e.getState,n){(y?"production":void 0)!=="production"&&n&&console.warn("[DEPRECATED] Use `createWithEqualityFn` from 'zustand/traditional'. https://github.com/pmndrs/zustand/discussions/1937");const o=Q(e.subscribe,e.getState,e.getServerState||e.getState,t,n);return h.useDebugValue(o),o}const w=e=>{(y?"production":void 0)!=="production"&&typeof e!="function"&&console.warn("[DEPRECATED] Passing a vanilla store will be unsupported in a future version. Instead use `import { useStore } from 'zustand'`.");const t=typeof e=="function"?V(e):e,n=(o,r)=>X(t,o,r);return Object.assign(n,t),n},Y=e=>e?w(e):w;var ee=e=>((y?"production":void 0)!=="production"&&console.warn("[DEPRECATED] Default export is deprecated. Instead use `import { create } from 'zustand'`."),Y(e));export{ee as r};
+//# sourceMappingURL=store-CMICDrHZ.js.map

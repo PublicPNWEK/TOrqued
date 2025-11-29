@@ -77,6 +77,8 @@ A React-based dashboard for Shopify stores with affiliate tracking and real-time
 - [Deploying to Shopify](#deploying-to-shopify)
 - [Troubleshooting](#troubleshooting)
 - [Advanced Features](#advanced-features)
+- [Contributing](#contributing)
+- [Documentation](#documentation)
 
 ## What is This?
 
@@ -436,14 +438,80 @@ See `.env.example` for all available configuration options.
 
 For detailed information about these features, see [COMPETITIVE_ADVANTAGES.md](COMPETITIVE_ADVANTAGES.md).
 
+## Contributing
+
+We welcome contributions from the community! Whether you're fixing bugs, adding features, or improving documentation, your help is appreciated.
+
+### Getting Started with Contributing
+
+1. **Read the Contributing Guide**: See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed guidelines
+2. **Set up GPG Signing**: Follow our [GPG Setup Guide](docs/GPG_SETUP.md) to sign your commits
+3. **Understand the Theme Structure**: Review [Theme Structure Documentation](docs/THEME_STRUCTURE.md)
+4. **Follow Coding Standards**: Maintain consistency with existing code
+5. **Write Tests**: Add tests for new features
+6. **Submit Pull Requests**: Follow our PR process
+
+### Quick Contribution Steps
+
+```bash
+# Fork and clone the repository
+git clone https://github.com/YOUR_USERNAME/TOrqued.git
+cd TOrqued
+
+# Install dependencies
+npm install
+
+# Create a feature branch
+git checkout -b feature/your-feature-name
+
+# Make your changes and test
+npm run lint
+npm test
+npm run build
+
+# Commit your changes (with GPG signing)
+git commit -S -m "feat: description of your changes"
+
+# Push and create a pull request
+git push origin feature/your-feature-name
+```
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for comprehensive contribution guidelines.
+
+## Documentation
+
+### Core Documentation
+- **[README.md](README.md)** - This file, getting started guide
+- **[CONTRIBUTING.md](CONTRIBUTING.md)** - Contribution guidelines and workflow
+- **[THEME_IMPORT.md](THEME_IMPORT.md)** - Importing theme to Shopify
+- **[COMPETITIVE_ADVANTAGES.md](COMPETITIVE_ADVANTAGES.md)** - Advanced features and capabilities
+
+### Developer Guides
+- **[GPG Setup Guide](docs/GPG_SETUP.md)** - Setting up GPG signing for commits
+- **[Theme Structure Guide](docs/THEME_STRUCTURE.md)** - Shopify theme architecture and customization
+
+### Additional Resources
+- [Shopify Theme Documentation](https://shopify.dev/docs/themes)
+- [React Documentation](https://react.dev)
+- [TypeScript Documentation](https://www.typescriptlang.org/docs/)
+- [Vite Documentation](https://vitejs.dev)
+
 ---
 
 **Questions or Issues?** Open an issue on GitHub or contact your development team.
-## ?? Support
+
+## Support
+
 - 24/7 enterprise support
 - Dedicated success manager
 - Custom training and onboarding
 - Priority bug fixes and feature requests
+
+---
+
+**License**: See [LICENSE](LICENSE) for details.
+
+**Contributing**: We welcome contributions! See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
 
 ## 🤝 Contributing
 

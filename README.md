@@ -51,6 +51,9 @@ Open your terminal in the project folder and run:
 npm install
 ```
 
+The Shopify deployment automatically sets `BUILD_TARGET='shopify'`, which creates a single optimized bundle instead of multiple chunks. This ensures all dependencies are included in the deployed file.
+
+### Edge Deployment (Global Performance)
 This will download all the necessary packages. It may take a few minutes.
 
 ### Step 2: Configure Environment Variables
@@ -132,9 +135,14 @@ This takes 1-3 minutes depending on your internet speed.
 
 Now that the files are uploaded, you need to add the dashboard to a page:
 
+**Built for enterprises that demand the best.** This platform doesn't just meet industry standards�it sets new ones.
 1. **Log into Shopify Admin**
 
 2. **Go to Online Store → Themes**
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 3. **Click "Customize" on your current theme**
 

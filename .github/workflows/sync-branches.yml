@@ -1,0 +1,225 @@
+name: Sync All Branches with Master
+
+on:
+  push:
+    branches: [ master ]
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Perform a dry run without actually merging'
+        required: false
+        default: 'false'
+        type: choice
+        options:
+          - 'true'
+          - 'false'
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  sync-branches:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Configure Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+      
+      - name: Fetch all branches
+        run: |
+          git fetch --all
+          git branch -r | grep -v '\->' | grep -v 'master' | sed 's/origin\///' > branches.txt
+          echo "Branches to sync:"
+          cat branches.txt
+      
+      - name: Sync branches with master
+        id: sync-branches
+        env:
+          DRY_RUN: ${{ github.event.inputs.dry_run || 'false' }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set +e  # Don't exit on error, we want to continue with other branches
+          
+          failed_branches=()
+          success_branches=()
+          skipped_branches=()
+          
+          while IFS= read -r branch; do
+            # Skip empty lines
+            [ -z "$branch" ] && continue
+            
+            # Skip branches that start with 'copilot/' as they are temporary
+            if [[ "$branch" == copilot/* ]]; then
+              echo "⏭️  Skipping copilot branch: $branch"
+              skipped_branches+=("$branch (copilot branch)")
+              continue
+            fi
+            
+            echo "=========================================="
+            echo "🔄 Processing branch: $branch"
+            echo "=========================================="
+            
+            # Checkout the branch
+            if ! git checkout "$branch" 2>/dev/null; then
+              echo "❌ Failed to checkout branch: $branch"
+              failed_branches+=("$branch (checkout failed)")
+              continue
+            fi
+            
+            # Check if branch is ahead of master
+            AHEAD=$(git rev-list --count master..$branch)
+            BEHIND=$(git rev-list --count $branch..master)
+            
+            echo "📊 Branch status: $AHEAD commits ahead, $BEHIND commits behind master"
+            
+            # If branch is already up to date, skip
+            if [ "$BEHIND" -eq 0 ]; then
+              echo "✅ Branch $branch is already up to date with master"
+              success_branches+=("$branch (already up-to-date)")
+              continue
+            fi
+            
+            # Perform dry run or actual merge
+            if [ "$DRY_RUN" = "true" ]; then
+              echo "🔍 DRY RUN: Would merge master into $branch"
+              # Test if merge would conflict
+              if git merge --no-commit --no-ff master 2>&1 | grep -q "CONFLICT"; then
+                echo "⚠️  DRY RUN: Merge would have conflicts"
+                failed_branches+=("$branch (would have conflicts)")
+                git merge --abort
+              else
+                echo "✅ DRY RUN: Merge would succeed"
+                success_branches+=("$branch (dry run success)")
+                git merge --abort 2>/dev/null || true
+              fi
+            else
+              # Attempt to merge master into the branch
+              if git merge master -m "Sync with master" --no-edit; then
+                echo "✅ Successfully merged master into $branch"
+                
+                # Push the changes
+                if git push origin "$branch"; then
+                  echo "✅ Successfully pushed $branch"
+                  success_branches+=("$branch")
+                else
+                  echo "❌ Failed to push $branch"
+                  failed_branches+=("$branch (push failed)")
+                fi
+              else
+                echo "⚠️  Merge conflicts detected in $branch"
+                echo "📝 Creating issue for manual resolution"
+                
+                # Abort the merge
+                git merge --abort
+                
+                failed_branches+=("$branch (merge conflicts)")
+              fi
+            fi
+            
+            echo ""
+          done < branches.txt
+          
+          # Return to master branch
+          git checkout master
+          
+          # Generate summary
+          echo "=========================================="
+          echo "📋 SYNC SUMMARY"
+          echo "=========================================="
+          echo "✅ Successful: ${#success_branches[@]}"
+          echo "❌ Failed: ${#failed_branches[@]}"
+          echo "⏭️  Skipped: ${#skipped_branches[@]}"
+          echo ""
+          
+          if [ ${#success_branches[@]} -gt 0 ]; then
+            echo "✅ Successfully synced branches:"
+            printf '%s\n' "${success_branches[@]}"
+            echo ""
+          fi
+          
+          if [ ${#skipped_branches[@]} -gt 0 ]; then
+            echo "⏭️  Skipped branches:"
+            printf '%s\n' "${skipped_branches[@]}"
+            echo ""
+          fi
+          
+          if [ ${#failed_branches[@]} -gt 0 ]; then
+            echo "❌ Failed branches (manual intervention required):"
+            printf '%s\n' "${failed_branches[@]}"
+            echo ""
+            
+            # Save failed branches for issue creation
+            printf '%s\n' "${failed_branches[@]}" > failed_branches.txt
+          fi
+          
+          # Set output for next step
+          if [ ${#failed_branches[@]} -gt 0 ]; then
+            echo "has_failures=true" >> $GITHUB_OUTPUT
+          else
+            echo "has_failures=false" >> $GITHUB_OUTPUT
+          fi
+      
+      - name: Create issue for failed syncs
+        if: steps.sync-branches.outputs.has_failures == 'true' && github.event.inputs.dry_run != 'true'
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const fs = require('fs');
+            
+            let failedBranches = '';
+            try {
+              failedBranches = fs.readFileSync('failed_branches.txt', 'utf8');
+            } catch (error) {
+              console.log('No failed branches file found');
+              return;
+            }
+            
+            if (!failedBranches.trim()) {
+              console.log('No failed branches to report');
+              return;
+            }
+            
+            const issueBody = `## ⚠️ Branch Sync Failed
+            
+            The automated branch sync workflow encountered conflicts or errors with the following branches:
+            
+            ${failedBranches.split('\n').map(b => b.trim()).filter(b => b).map(b => `- \`${b}\``).join('\n')}
+            
+            ### Action Required
+            
+            These branches need to be manually synced with \`master\`. Please:
+            
+            1. Checkout the branch: \`git checkout <branch-name>\`
+            2. Merge master: \`git merge master\`
+            3. Resolve any conflicts
+            4. Commit and push: \`git push origin <branch-name>\`
+            
+            ### Workflow Run
+            
+            - **Workflow:** ${{ github.workflow }}
+            - **Run:** [#${{ github.run_number }}](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})
+            - **Triggered by:** ${{ github.event_name }}
+            - **Commit:** ${{ github.sha }}
+            `;
+            
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: `🔄 Branch sync failed - Manual resolution needed`,
+              body: issueBody,
+              labels: ['automation', 'sync-required']
+            });
+      
+      - name: Report success
+        if: steps.sync-branches.outputs.has_failures == 'false'
+        run: |
+          echo "✅ All branches successfully synced with master!"

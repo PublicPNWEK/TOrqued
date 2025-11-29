@@ -119,7 +119,7 @@ npm run ai:optimize
 
 ---
 
-**Built for enterprises that demand the best.** This platform doesn't just meet industry standards�it sets new ones.
+**Built for enterprises that demand the best.** This platform doesn't just meet industry standards�it sets new ones.
 
 For detailed implementation guides, see individual documentation files in `/docs`.
 
@@ -128,6 +128,18 @@ For detailed implementation guides, see individual documentation files in `/docs
 - Dedicated success manager
 - Custom training and onboarding
 - Priority bug fixes and feature requests
+
+## 🔄 Development
+
+### Branch Synchronization
+
+To keep feature branches in sync with master, use the automated sync script:
+
+```bash
+./scripts/sync-branches.sh
+```
+
+For more details, see [SYNC_BRANCHES.md](SYNC_BRANCHES.md).
 
 ## 📄 License
 

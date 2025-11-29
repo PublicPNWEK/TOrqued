@@ -369,6 +369,7 @@ Whenever you make changes to the code:
 
 **Problem:** The section isn't showing up.
 
+**Built for enterprises that demand the best.** This platform doesn't just meet industry standards�it sets new ones.
 **Solution:**
 - Make sure you ran `npm run shopify:deploy` successfully
 - Check that you added the "Torqued Dashboard" section in the theme customizer
@@ -443,6 +444,9 @@ For detailed information about these features, see [COMPETITIVE_ADVANTAGES.md](C
 - Custom training and onboarding
 - Priority bug fixes and feature requests
 
+## 🔐 Contributing
+
+For information on setting up GPG commit signing and troubleshooting signature verification issues, see [GPG_SETUP.md](GPG_SETUP.md).
 ## 🤝 Contributing
 
 For information on setting up GPG commit signing and contributing to the project, see:

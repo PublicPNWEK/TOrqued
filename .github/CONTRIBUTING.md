@@ -36,6 +36,9 @@ Thank you for your interest in contributing to TOrqued! This document provides g
 3. **Test your changes**:
    ```bash
    npm run lint
+   npm run type-check
+   npm test
+   npm run build
    npm run build
    npm test
    ```

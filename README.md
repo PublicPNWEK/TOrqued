@@ -128,3 +128,7 @@ For detailed implementation guides, see individual documentation files in `/docs
 - Dedicated success manager
 - Custom training and onboarding
 - Priority bug fixes and feature requests
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.

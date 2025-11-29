@@ -52,6 +52,8 @@
 npm run shopify:deploy
 ```
 
+The Shopify deployment automatically sets `BUILD_TARGET='shopify'`, which creates a single optimized bundle instead of multiple chunks. This ensures all dependencies are included in the deployed file.
+
 ### Edge Deployment (Global Performance)
 ```bash
 npm run deploy:edge
@@ -119,9 +121,13 @@ npm run ai:optimize
 
 ---
 
-**Built for enterprises that demand the best.** This platform doesn't just meet industry standards—it sets new ones.
+**Built for enterprises that demand the best.** This platform doesn't just meet industry standardsï¿½it sets new ones.
 
 For detailed implementation guides, see individual documentation files in `/docs`.
+
+## ðŸ“„ License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## ?? Support
 - 24/7 enterprise support

@@ -7,7 +7,7 @@ export default defineConfig({
   build: {
     sourcemap: true,
     rollupOptions: {
-      output: {
+      output: process.env.BUILD_TARGET === 'shopify' ? {} : {
         manualChunks: {
           vendor: ['react', 'react-dom'],
           query: ['@tanstack/react-query'],

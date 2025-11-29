@@ -7,24 +7,29 @@ const TOKEN = process.env.SHOPIFY_TOKEN;
 const THEME_ID = process.env.SHOPIFY_THEME_ID;
 
 if (!SHOP || !TOKEN || !THEME_ID) {
-  console.error('? Missing required environment variables.');
+  console.error('❌ Missing required environment variables.');
   process.exit(1);
 }
 
 const files = [
-  { key: 'assets/torqued-dashboard.js', path: path.resolve('./dist/assets/torqued-dashboard.js') },
-  { key: 'assets/torqued-dashboard.css', path: path.resolve('./dist/assets/torqued-dashboard.css') }
+  { key: 'assets/torqued-dashboard.js', path: path.resolve('./dist/assets/torqued-dashboard.js') }
 ];
+
+// Add CSS file only if it exists
+const cssPath = path.resolve('./dist/assets/torqued-dashboard.css');
+if (fs.existsSync(cssPath)) {
+  files.push({ key: 'assets/torqued-dashboard.css', path: cssPath });
+}
 
 (async () => {
   for (const file of files) {
-    console.log('? Uploading', file.key);
+    console.log('📤 Uploading', file.key);
 
     let content;
     try {
       content = fs.readFileSync(file.path, 'utf8');
     } catch (err) {
-      console.error(`? Failed to read file: ${file.path}`);
+      console.error(`❌ Failed to read file: ${file.path}`);
       process.exit(1);
     }
 
@@ -42,10 +47,10 @@ const files = [
 
     if (!res.ok) {
       const t = await res.text();
-      console.error(`? Upload failed for ${file.key}: ${t}`);
+      console.error(`❌ Upload failed for ${file.key}: ${t}`);
       process.exit(1);
     }
   }
 
-  console.log('? Shopify assets deployed');
+  console.log('✅ Shopify assets deployed');
 })();

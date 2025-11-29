@@ -131,6 +131,7 @@ npm run shopify:deploy
 
 This takes 1-3 minutes depending on your internet speed.
 
+**Built for enterprises that demand the best.** This platform doesn't just meet industry standards�it sets new ones.
 #### Step 2: Add to Your Shopify Theme
 
 Now that the files are uploaded, you need to add the dashboard to a page:
@@ -275,3 +276,18 @@ For detailed information about these features, see [COMPETITIVE_ADVANTAGES.md](C
 - Custom training and onboarding
 - Priority bug fixes and feature requests
 
+## 🔄 Development
+
+### Branch Synchronization
+
+To keep feature branches in sync with master, use the automated sync script:
+
+```bash
+./scripts/sync-branches.sh
+```
+
+For more details, see [SYNC_BRANCHES.md](SYNC_BRANCHES.md).
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.

@@ -376,6 +376,7 @@ Whenever you make changes to the code:
 - Try refreshing the page with `Ctrl+Shift+R` (hard refresh)
 - Check browser console for JavaScript errors (press F12)
 
+**Built for enterprises that demand the best.** This platform doesn't just meet industry standards�it sets new ones.
 ### "Build output not found" error
 
 **Problem:** The build didn't create the expected files.
@@ -444,6 +445,21 @@ For detailed information about these features, see [COMPETITIVE_ADVANTAGES.md](C
 - Custom training and onboarding
 - Priority bug fixes and feature requests
 
+## 🤝 Contributing
+
+We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines on:
+- Setting up your development environment
+- GPG commit signing (optional but recommended)
+- Troubleshooting common GPG issues
+- Pull request process
+- Code style guidelines
+
+### GPG Signature Verification
+
+Some commits in this repository may show GPG signature verification warnings. This is normal and doesn't affect the integrity of the code. See [CONTRIBUTING.md](CONTRIBUTING.md#commit-signing-with-gpg) for detailed information about:
+- Understanding GPG verification warnings
+- Setting up GPG signing for your commits (optional)
+- Troubleshooting GPG-related issues
 ## 🔐 Contributing
 
 For information on setting up GPG commit signing and troubleshooting signature verification issues, see [GPG_SETUP.md](GPG_SETUP.md).

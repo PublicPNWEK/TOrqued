@@ -119,7 +119,7 @@ npm run ai:optimize
 
 ---
 
-**Built for enterprises that demand the best.** This platform doesn't just meet industry standards�it sets new ones.
+**Built for enterprises that demand the best.** This platform doesn't just meet industry standards�it sets new ones.
 
 For detailed implementation guides, see individual documentation files in `/docs`.
 
@@ -128,6 +128,22 @@ For detailed implementation guides, see individual documentation files in `/docs
 - Dedicated success manager
 - Custom training and onboarding
 - Priority bug fixes and feature requests
+
+## 🤝 Contributing
+
+We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines on:
+- Setting up your development environment
+- GPG commit signing (optional but recommended)
+- Troubleshooting common GPG issues
+- Pull request process
+- Code style guidelines
+
+### GPG Signature Verification
+
+Some commits in this repository may show GPG signature verification warnings. This is normal and doesn't affect the integrity of the code. See [CONTRIBUTING.md](CONTRIBUTING.md#commit-signing-with-gpg) for detailed information about:
+- Understanding GPG verification warnings
+- Setting up GPG signing for your commits (optional)
+- Troubleshooting GPG-related issues
 
 ## 📄 License
 

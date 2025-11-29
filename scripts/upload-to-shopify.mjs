@@ -14,19 +14,18 @@ if (!SHOP || !TOKEN || !THEME_ID) {
 const files = [
   { key: 'assets/torqued-dashboard.js', path: path.resolve('./dist/assets/torqued-dashboard.js') },
   { key: 'assets/torqued-dashboard.css', path: path.resolve('./dist/assets/torqued-dashboard.css') }
-];
+].filter(file => fs.existsSync(file.path));
+
+if (files.length === 0) {
+  console.error('? No build artifacts found to upload.');
+  process.exit(1);
+}
 
 (async () => {
   for (const file of files) {
     console.log('? Uploading', file.key);
 
-    let content;
-    try {
-      content = fs.readFileSync(file.path, 'utf8');
-    } catch (err) {
-      console.error(`? Failed to read file: ${file.path}`);
-      process.exit(1);
-    }
+    const content = fs.readFileSync(file.path, 'utf8');
 
     const res = await fetch(
       `https://${SHOP}/admin/api/2024-01/themes/${THEME_ID}/assets.json`,

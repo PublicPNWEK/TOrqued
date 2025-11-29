@@ -8,6 +8,7 @@
     "build": "vite build",
     "preview": "vite preview --port 4173",
     "shopify:deploy": "node scripts/build-shopify.mjs && node scripts/upload-to-shopify.mjs && node scripts/create-section.mjs",
+    "shopify:validate": "node scripts/validate-theme.mjs",
     "test": "vitest",
     "test:playwright": "playwright test",
     "lint": "eslint . --ext .ts,.tsx,.js,.jsx",

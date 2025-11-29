@@ -50,6 +50,7 @@ shopify theme push --store your-store.myshopify.com
    - `sections/`
    - `templates/`
    - `assets/` (if exists)
+   - `assets/`
    - `snippets/`
 3. Go to **Online Store** → **Themes**
 4. Click **Add theme** → **Upload ZIP file**

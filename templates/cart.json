@@ -1,8 +1,8 @@
 {
-  "name": "Dashboard Page",
+  "name": "Cart",
   "sections": {
     "main": {
-      "type": "torqued-interface"
+      "type": "main-cart"
     }
   },
   "order": ["main"]

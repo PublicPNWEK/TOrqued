@@ -1,8 +1,8 @@
 {
-  "name": "Dashboard Page",
+  "name": "Product",
   "sections": {
     "main": {
-      "type": "torqued-interface"
+      "type": "main-product"
     }
   },
   "order": ["main"]

@@ -122,11 +122,17 @@ Copy the entire output, including `-----BEGIN PGP PUBLIC KEY BLOCK-----` and `--
 # Set your GPG key
 git config --global user.signingkey YOUR_KEY_ID
 
-# Enable commit signing by default
+# Enable commit signing by default (applies to all repositories on this system)
 git config --global commit.gpgsign true
 
 # For tag signing
 git config --global tag.gpgsign true
+```
+
+**Note**: Using `--global` affects all repositories on your system. To enable GPG signing only for this repository, omit `--global`:
+```bash
+git config user.signingkey YOUR_KEY_ID
+git config commit.gpgsign true
 ```
 
 #### 7. Configure GPG agent (optional, for convenience)
@@ -197,9 +203,11 @@ This is normal and not an error. It simply means:
 You can:
 1. Ignore it (recommended) - it doesn't affect functionality
 2. Import their public key if you need to verify their commits
-3. Configure Git to not verify signatures:
+3. Disable GPG signature verification for fetch/pull operations:
    ```bash
-   git config --global gpg.program true
+   git config --global gpg.program true  # Disables all GPG operations
+   # OR more explicitly:
+   git config --global commit.gpgsign false  # Only disables signing your commits
    ```
 
 #### Problem: Commits are being signed, but GitHub shows "Unverified"

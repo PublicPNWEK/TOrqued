@@ -111,10 +111,14 @@ These PRs are ready to merge after Phase 1 and 2 are complete:
 
 **Action**:
 ```bash
-git checkout master
-git pull origin master
+# Get the default branch name (usually 'master' or 'main')
+DEFAULT_BRANCH=$(git symbolic-ref refs/remotes/origin/HEAD | cut -d'/' -f4)
+
+# Merge the PR
+git checkout $DEFAULT_BRANCH
+git pull origin $DEFAULT_BRANCH
 git merge --no-ff copilot/optimize-readme-for-beginners
-git push origin master
+git push origin $DEFAULT_BRANCH
 ```
 
 **After merging**:
@@ -133,10 +137,13 @@ git push origin master
 
 **Action**:
 ```bash
-git checkout master
-git pull origin master
+# Get the default branch name
+DEFAULT_BRANCH=$(git symbolic-ref refs/remotes/origin/HEAD | cut -d'/' -f4)
+
+git checkout $DEFAULT_BRANCH
+git pull origin $DEFAULT_BRANCH
 git merge --no-ff copilot/fix-theme-import-compatibility
-git push origin master
+git push origin $DEFAULT_BRANCH
 ```
 
 **Potential Conflict**: If README conflicts with PR #2, resolve in favor of PR #2's structure while keeping PR #3's content.
@@ -161,10 +168,12 @@ git push origin master
 
 **Action**:
 ```bash
-git checkout master
-git pull origin master
+DEFAULT_BRANCH=$(git symbolic-ref refs/remotes/origin/HEAD | cut -d'/' -f4)
+
+git checkout $DEFAULT_BRANCH
+git pull origin $DEFAULT_BRANCH
 git merge --no-ff copilot/add-license-and-fix-shopify-deploy
-git push origin master
+git push origin $DEFAULT_BRANCH
 ```
 
 **Potential Conflicts**: README conflicts with PR #2 and #3. Resolve by:
@@ -185,18 +194,22 @@ git push origin master
 
 **If merging PR #7** (GitHub Actions):
 ```bash
-git checkout master
-git pull origin master
+DEFAULT_BRANCH=$(git symbolic-ref refs/remotes/origin/HEAD | cut -d'/' -f4)
+
+git checkout $DEFAULT_BRANCH
+git pull origin $DEFAULT_BRANCH
 git merge --no-ff copilot/sync-branches-with-master
-git push origin master
+git push origin $DEFAULT_BRANCH
 ```
 
 **If merging PR #6** (Script):
 ```bash
-git checkout master  
-git pull origin master
+DEFAULT_BRANCH=$(git symbolic-ref refs/remotes/origin/HEAD | cut -d'/' -f4)
+
+git checkout $DEFAULT_BRANCH
+git pull origin $DEFAULT_BRANCH
 git merge --no-ff copilot/sync-all-branches
-git push origin master
+git push origin $DEFAULT_BRANCH
 ```
 
 **Testing**:
@@ -218,10 +231,12 @@ git push origin master
 1. Review that all tasks are complete
 2. Merge PR #9 to bring in CONTRIBUTING.md and PR summary docs:
    ```bash
-   git checkout master
-   git pull origin master
+   DEFAULT_BRANCH=$(git symbolic-ref refs/remotes/origin/HEAD | cut -d'/' -f4)
+   
+   git checkout $DEFAULT_BRANCH
+   git pull origin $DEFAULT_BRANCH
    git merge --no-ff copilot/work-through-open-pulls
-   git push origin master
+   git push origin $DEFAULT_BRANCH
    ```
 3. Close PR #9
 4. Delete branch: `git push origin --delete copilot/work-through-open-pulls`
@@ -278,15 +293,19 @@ git push origin master
 
 ### For Complete Rollback
 ```bash
-# Reset master to before the merges
-git checkout master
+DEFAULT_BRANCH=$(git symbolic-ref refs/remotes/origin/HEAD | cut -d'/' -f4)
+
+# Reset to before the merges
+git checkout $DEFAULT_BRANCH
 git reset --hard <commit-before-merges>
-git push --force-with-lease origin master
+git push --force-with-lease origin $DEFAULT_BRANCH
 ```
 
 **Note**: Always create a backup branch before starting:
 ```bash
-git checkout master
+DEFAULT_BRANCH=$(git symbolic-ref refs/remotes/origin/HEAD | cut -d'/' -f4)
+
+git checkout $DEFAULT_BRANCH
 git checkout -b backup-before-pr-merge
 git push origin backup-before-pr-merge
 ```

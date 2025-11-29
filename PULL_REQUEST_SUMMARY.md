@@ -56,7 +56,7 @@ There are currently 8 open pull requests in the repository. Most are draft PRs c
 
 ### PR #4 - Add LICENSE and fix Shopify deployment 🚨 CRITICAL ISSUE
 - **Status**: Draft - HAS MAJOR PROBLEM
-- **Changes**: 4 commits, 2,781,827 additions (!), 23 deletions, 13,800 files changed
+- **Changes**: 4 commits, ~2.7M additions (!), 23 deletions, 13,800 files changed
 - **Purpose**: Add MIT LICENSE and fix Shopify deployment
 - **PROBLEM**: Accidentally committed node_modules directory
   - The .gitignore was added but node_modules was already tracked

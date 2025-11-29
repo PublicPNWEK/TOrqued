@@ -84,20 +84,30 @@ try {
 
 // Check for templates
 console.log('\n📄 Checking templates:');
-const templates = fs.readdirSync('templates');
-const templateCount = templates.length;
-console.log(`  ℹ Found ${templateCount} template(s)`);
-if (templateCount === 0) {
-  console.log('  ⚠ Warning: No templates found (at least index.liquid or index.json recommended)');
+if (fs.existsSync('templates')) {
+  const templates = fs.readdirSync('templates');
+  const templateCount = templates.length;
+  console.log(`  ℹ Found ${templateCount} template(s)`);
+  if (templateCount === 0) {
+    console.log('  ⚠ Warning: No templates found (at least index.liquid or index.json recommended)');
+  }
+} else {
+  console.log('  ✗ templates directory does not exist');
+  isValid = false;
 }
 
 // Check for sections
 console.log('\n📦 Checking sections:');
-const sections = fs.readdirSync('sections').filter(f => f.endsWith('.liquid'));
-const sectionCount = sections.length;
-console.log(`  ℹ Found ${sectionCount} section(s)`);
-if (sectionCount === 0) {
-  console.log('  ⚠ Warning: No sections found');
+if (fs.existsSync('sections')) {
+  const sections = fs.readdirSync('sections').filter(f => f.endsWith('.liquid'));
+  const sectionCount = sections.length;
+  console.log(`  ℹ Found ${sectionCount} section(s)`);
+  if (sectionCount === 0) {
+    console.log('  ⚠ Warning: No sections found');
+  }
+} else {
+  console.log('  ✗ sections directory does not exist');
+  isValid = false;
 }
 
 // Final result

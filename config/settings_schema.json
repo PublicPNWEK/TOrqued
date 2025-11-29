@@ -22,7 +22,7 @@
       },
       {
         "type": "checkbox",
-        "id": "full_width_mode",
+        "id": "full_width",
         "label": "Enable Full Width Mode",
         "default": true
       },

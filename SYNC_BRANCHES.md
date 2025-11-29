@@ -2,19 +2,7 @@
 
 ## Overview
 
-This guide explains how to keep all feature branches synchronized with the `master` branch in the TOrqued repository.
-
-## Current Branch Status
-
-As of the last sync:
-
-| Branch | Status | Last Sync Commit |
-|--------|--------|------------------|
-| `copilot/sync-all-branches` | ✅ Synced | Latest |
-| `copilot/sync-branches-with-master` | ⏳ Pending | Based on aabb944 |
-| `copilot/add-license-and-fix-shopify-deploy` | ⏳ Pending | Based on earlier commit |
-| `copilot/fix-theme-import-compatibility` | ⏳ Pending | Based on earlier commit |
-| `copilot/optimize-readme-for-beginners` | ⏳ Pending | Based on earlier commit |
+This guide explains how to keep all feature branches synchronized with the default branch (`master` or `main`) in the TOrqued repository.
 
 ## Quick Sync
 
@@ -27,24 +15,26 @@ Use the provided sync script to automatically sync all branches:
 ```
 
 This script will:
-1. Fetch the latest changes from `master`
-2. Checkout each feature branch
-3. Merge `master` into the branch
-4. Push the changes back to origin
-5. Handle merge conflicts gracefully
+1. Automatically detect the default branch (`master` or `main`)
+2. Discover all feature branches in the repository
+3. Fetch the latest changes from the default branch
+4. Checkout each feature branch
+5. Merge the default branch into each feature branch
+6. Push the changes back to origin
+7. Handle merge conflicts gracefully
 
 ### Manual Method
 
 To sync a single branch manually:
 
 ```bash
-# 1. Fetch latest changes
+# 1. Fetch latest changes (replace 'master' with 'main' if that's your default branch)
 git fetch origin master
 
 # 2. Checkout your branch
 git checkout your-branch-name
 
-# 3. Merge master
+# 3. Merge the default branch
 git merge origin/master
 
 # 4. Resolve any conflicts (if needed)
@@ -58,10 +48,10 @@ git push origin your-branch-name
 
 ## Verifying Sync Status
 
-To check if your branch is up-to-date with master:
+To check if your branch is up-to-date with the default branch:
 
 ```bash
-# Compare your branch with master
+# Compare your branch with the default branch (e.g., master)
 git fetch origin master
 git log --oneline HEAD..origin/master
 
@@ -101,7 +91,7 @@ If you encounter merge conflicts during sync:
 
 ## Best Practices
 
-1. **Sync regularly** - Sync your branch with master frequently to avoid large merge conflicts
+1. **Sync regularly** - Sync your branch with the default branch frequently to avoid large merge conflicts
 
 2. **Test after syncing** - Always run tests after syncing:
    ```bash
@@ -113,7 +103,7 @@ If you encounter merge conflicts during sync:
 
 3. **Commit before syncing** - Always commit your work before syncing to avoid losing changes
 
-4. **Sync before creating PRs** - Ensure your branch is up-to-date with master before opening a pull request
+4. **Sync before creating PRs** - Ensure your branch is up-to-date with the default branch before opening a pull request
 
 ## Troubleshooting
 
@@ -129,10 +119,10 @@ If branches have diverged significantly:
 
 ```bash
 # Option 1: Rebase (cleaner history)
-git rebase origin/master
+git rebase origin/master  # or origin/main
 
 # Option 2: Merge (preserves all history)
-git merge origin/master
+git merge origin/master  # or origin/main
 ```
 
 ### Aborting a merge

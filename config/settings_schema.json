@@ -1,0 +1,57 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Torqued Automation Bundle",
+    "theme_version": "3.0.0",
+    "theme_author": "Torqued Team",
+    "theme_documentation_url": "https://github.com/PublicPNWEK/TOrqued",
+    "theme_support_url": "https://github.com/PublicPNWEK/TOrqued/issues"
+  },
+  {
+    "name": "Torqued Configuration",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Dashboard Settings"
+      },
+      {
+        "type": "text",
+        "id": "leaddyno_key",
+        "label": "LeadDyno Public Key",
+        "info": "Enter your LeadDyno public API key for affiliate tracking"
+      },
+      {
+        "type": "checkbox",
+        "id": "full_width",
+        "id": "full_width_mode",
+        "label": "Enable Full Width Mode",
+        "default": true
+      },
+      {
+        "type": "header",
+        "content": "Advanced Features"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_edge_caching",
+        "label": "Enable Edge Caching",
+        "default": true,
+        "info": "Enable Cloudflare edge caching for improved performance"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_ai_personalization",
+        "label": "Enable AI Personalization",
+        "default": false,
+        "info": "Enable OpenAI-powered personalization features"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_fraud_detection",
+        "label": "Enable Fraud Detection",
+        "default": true,
+        "info": "Enable ML-based fraud detection"
+      }
+    ]
+  }
+]

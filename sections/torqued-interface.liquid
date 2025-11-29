@@ -1,0 +1,74 @@
+{% comment %}
+  Torqued Automation Dashboard - Enterprise Edition
+  This section integrates the React-based dashboard into your Shopify theme
+  
+  IMPORTANT: This section requires dashboard assets to be deployed first!
+  Run `npm run shopify:deploy` to build and upload the required files:
+  - assets/torqued-dashboard.js (React application)
+  - assets/torqued-dashboard.css (Application styles)
+  
+  See THEME_IMPORT.md for detailed setup instructions.
+{% endcomment %}
+
+{{ 'torqued-dashboard.css' | asset_url | stylesheet_tag }}
+
+<div class="torqued-app-container">
+  <div id="torqued-root" role="main" aria-label="Torqued Dashboard"></div>
+  <div id="torqued-root"></div>
+</div>
+
+<script>
+window.__TORQUED_CONFIG__ = {
+  shopDomain: "{{ shop.permanent_domain }}",
+  leadDynoKey: {{ section.settings.leaddyno_key | json }},
+  customerId: {{ customer.id | json }},
+  customerEmail: {{ customer.email | json }},
+  customerName: {{ customer.name | json }},
+  leadDynoKey: "{{ section.settings.leaddyno_key }}",
+  enableEdgeCaching: {{ settings.enable_edge_caching | json }},
+  enableAiPersonalization: {{ settings.enable_ai_personalization | json }},
+  enableFraudDetection: {{ settings.enable_fraud_detection | json }},
+  fullWidthMode: {{ section.settings.full_width | json }}
+};
+</script>
+
+<script src="{{ 'torqued-dashboard.js' | asset_url }}" defer></script>
+
+{% schema %}
+{
+  "name": "Torqued Dashboard",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Configuration"
+    },
+    {
+      "type": "checkbox",
+      "id": "full_width",
+      "label": "Full Width Mode",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "leaddyno_key",
+      "label": "LeadDyno Public Key",
+      "info": "Enter your LeadDyno API key for affiliate tracking"
+    },
+    {
+      "type": "header",
+      "content": "Help"
+    },
+    {
+      "type": "paragraph",
+      "content": "Deploy your dashboard assets using: npm run shopify:deploy"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Torqued Dashboard"
+    }
+  ]
+}
+{% endschema %}

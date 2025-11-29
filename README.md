@@ -119,7 +119,7 @@ npm run ai:optimize
 
 ---
 
-**Built for enterprises that demand the best.** This platform doesn't just meet industry standards�it sets new ones.
+**Built for enterprises that demand the best.** This platform doesn't just meet industry standards�it sets new ones.
 
 For detailed implementation guides, see individual documentation files in `/docs`.
 
@@ -128,6 +128,10 @@ For detailed implementation guides, see individual documentation files in `/docs
 - Dedicated success manager
 - Custom training and onboarding
 - Priority bug fixes and feature requests
+
+## 🔐 Contributing
+
+For information on setting up GPG commit signing and troubleshooting signature verification issues, see [GPG_SETUP.md](GPG_SETUP.md).
 
 ## 📄 License
 

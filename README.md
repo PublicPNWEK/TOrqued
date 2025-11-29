@@ -500,6 +500,11 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for comprehensive contribution guidelines
 
 **Questions or Issues?** Open an issue on GitHub or contact your development team.
 
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## ?? Support
 ## Support
 
 - 24/7 enterprise support

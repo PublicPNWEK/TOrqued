@@ -1,3 +1,71 @@
+# Torqued Automation Bundle v3 - Enterprise Edition
+
+🚀 **The most advanced Shopify/React integration platform** - Built to surpass competitors with cutting-edge technology stack and enterprise-grade features.
+
+## 🏆 Competitive Advantages
+
+### ⚡ **Edge Computing & Global Performance**
+- Cloudflare Workers integration for sub-50ms response times globally
+- Intelligent caching with auto-optimization
+- Edge-side A/B testing and personalization
+
+### 🤖 **AI-Powered Intelligence**
+- OpenAI-driven product recommendations
+- Dynamic pricing optimization based on market conditions
+- Real-time demand forecasting and inventory optimization
+
+### 🔒 **Enterprise Security**
+- ML-based fraud detection engine
+- Advanced device fingerprinting
+- Real-time risk scoring and transaction monitoring
+
+### 📊 **Advanced Analytics**
+- Real-time performance monitoring with sub-second latency
+- Predictive analytics for customer behavior
+- Custom dashboards with live data visualization
+
+### 🏢 **Multi-Tenant Architecture**
+- Isolated tenant environments with custom branding
+- Auto-scaling based on usage patterns
+- White-label deployment ready
+
+## ⚙️ Core Features
+- **TypeScript + Vite**: Modern build pipeline with HMR
+- **React Query + Zustand**: Optimized state and data management  
+- **WebSocket server**: Real-time affiliate events and notifications
+- **OAuth2 + RBAC**: Secure authentication with role-based access control
+- **Advanced UX**: Onboarding tours, skeleton loaders, virtualized tables
+- **Cloud Secrets**: AWS/GCP Secrets Manager integration
+- **CI/CD Pipeline**: Blue/Green deployments with automated rollbacks
+- **Bundle optimization**: Advanced code splitting and tree-shaking
+
+## 🚀 Quick Start
+1. `npm ci`
+2. Copy `.env.example` to `.env` and configure your environment
+3. `node scripts/migrate-secrets.js --provider=aws` (or `--provider=gcp`)
+4. `npm run dev`
+
+## 📦 Deployment Options
+
+### Option 1: Import Theme from GitHub (Recommended)
+
+You can import this theme directly into your Shopify store:
+
+1. Go to your Shopify Admin → Online Store → Themes
+2. Click "Add theme" → "Connect from GitHub"
+3. Connect your GitHub account and select this repository
+4. The theme will be imported with all necessary structure
+
+**📖 For detailed import instructions, see [THEME_IMPORT.md](THEME_IMPORT.md)**
+
+Alternatively, use the Shopify CLI:
+```bash
+shopify theme push --store your-store.myshopify.com
+```
+
+### Option 2: Deploy via Scripts (Advanced)
+
+For deploying just the dashboard assets to an existing theme:
 # Torqued Automation Bundle v3
 
 A React-based dashboard for Shopify stores with affiliate tracking and real-time analytics.
@@ -51,6 +119,10 @@ Open your terminal in the project folder and run:
 npm install
 ```
 
+Make sure to set these environment variables first:
+- `SHOPIFY_STORE` - Your store domain (e.g., yourstore.myshopify.com)
+- `SHOPIFY_TOKEN` - Your Shopify Admin API access token
+- `SHOPIFY_THEME_ID` - The ID of your theme
 The Shopify deployment automatically sets `BUILD_TARGET='shopify'`, which creates a single optimized bundle instead of multiple chunks. This ensures all dependencies are included in the deployed file.
 
 ### Edge Deployment (Global Performance)
@@ -118,6 +190,29 @@ Run the deployment command:
 npm run shopify:deploy
 ```
 
+## 🎨 Theme Structure
+
+This repository is a complete Shopify theme with the following structure:
+
+- `config/` - Theme configuration and settings schema
+- `layout/` - Theme layout files (theme.liquid)
+- `locales/` - Translation files for internationalization
+- `sections/` - Reusable theme sections including the Torqued dashboard
+- `snippets/` - Reusable code snippets
+- `templates/` - Page templates (index, product, collection, cart, etc.)
+- `assets/` - Static assets (CSS, JS, images)
+- `src/` - React application source code
+- `scripts/` - Build and deployment scripts
+
+### Using the Torqued Dashboard
+
+After importing the theme:
+1. Create a new page in your Shopify admin
+2. Select the "Dashboard Page" template
+3. The Torqued dashboard will automatically load on that page
+4. Configure dashboard settings in Theme Settings → Torqued Configuration
+
+## 🔧 Advanced Scripts
 **What you'll see:**
 ```
 🔨 Building for Shopify...
@@ -150,50 +245,50 @@ To manually trigger the sync workflow:
 - `npm run security:scan` - Security vulnerability scanning
 - `npm run deploy:edge` - Deploy to Cloudflare Workers
 
-## ?? Performance Benchmarks
+## ⚡ Performance Benchmarks
 - **Bundle Size**: 40% smaller than competitors (avg 150KB vs 250KB)
 - **First Paint**: Sub-200ms with edge caching
 - **Time to Interactive**: <1.5s on 3G networks
 - **Lighthouse Score**: 98+ performance, 100 accessibility
 
-## ?? Enterprise Security Features
+## 🔒 Enterprise Security Features
 - End-to-end encryption for sensitive data
 - Advanced rate limiting with intelligent throttling
 - Real-time fraud detection with ML models
 - Compliance ready (SOC2, GDPR, PCI-DSS)
 
-## ?? Global Infrastructure
+## 🌍 Global Infrastructure
 - 200+ edge locations worldwide
 - Multi-region failover capabilities
 - 99.99% uptime SLA
 - Auto-scaling to handle traffic spikes
 
-## ?? Integration Ecosystem
+## 🔗 Integration Ecosystem
 - **Shopify Plus**: Advanced features and custom apps
 - **LeadDyno**: Comprehensive affiliate tracking
 - **Stripe**: Advanced payment processing
 - **SendGrid**: Transactional email automation
 - **Twilio**: SMS and communication APIs
 
-## ?? Mobile-First Design
+## 📱 Mobile-First Design
 - Progressive Web App (PWA) support
 - Offline-first architecture with service workers
 - Touch-optimized interactions
 - Native app shell with instant loading
 
-## ?? Testing & Quality Assurance
+## 🧪 Testing & Quality Assurance
 - Unit tests with 95%+ coverage
 - End-to-end testing with Playwright
 - Visual regression testing
 - Automated accessibility testing
 
-## ?? Compliance & Standards
+## 📋 Compliance & Standards
 - WCAG 2.1 AA accessibility compliance
 - SEO optimized with structured data
 - Core Web Vitals optimization
 - International localization support (i18n)
 
-## ?? Innovation Pipeline
+## 🚀 Innovation Pipeline
 - GraphQL integration for efficient data fetching
 - Micro-frontend architecture support
 - Blockchain integration for affiliate tracking
@@ -206,11 +301,13 @@ This takes 1-3 minutes depending on your internet speed.
 **Built for enterprises that demand the best.** This platform doesn't just meet industry standards�it sets new ones.
 Now that the files are uploaded, you need to add the dashboard to a page:
 
+**Built for enterprises that demand the best.** This platform doesn't just meet industry standards—it sets new ones.
 **Built for enterprises that demand the best.** This platform doesn't just meet industry standards�it sets new ones.
 1. **Log into Shopify Admin**
 
 2. **Go to Online Store → Themes**
 
+## 📞 Support
 ## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
@@ -346,6 +443,11 @@ For detailed information about these features, see [COMPETITIVE_ADVANTAGES.md](C
 - Custom training and onboarding
 - Priority bug fixes and feature requests
 
+## 🤝 Contributing
+
+For information on setting up GPG commit signing and contributing to the project, see:
+- [GPG Setup Guide](GPG_SETUP.md) - GPG troubleshooting and setup
+- [Contributing Guide](.github/CONTRIBUTING.md) - Development workflow and guidelines
 ## 🔄 Development
 
 ### Branch Synchronization

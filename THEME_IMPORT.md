@@ -49,6 +49,7 @@ shopify theme push --store your-store.myshopify.com
    - `locales/`
    - `sections/`
    - `templates/`
+   - `assets/` (if exists)
    - `assets/`
    - `snippets/`
 3. Go to **Online Store** → **Themes**

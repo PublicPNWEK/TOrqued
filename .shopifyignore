@@ -29,7 +29,6 @@ tsconfig.json
 # Documentation
 README.md
 COMPETITIVE_ADVANTAGES.md
-GPG_SETUP.md
 *.md
 !locales/*.md
 

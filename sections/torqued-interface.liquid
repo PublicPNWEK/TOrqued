@@ -1,6 +1,13 @@
 {% comment %}
   Torqued Automation Dashboard - Enterprise Edition
   This section integrates the React-based dashboard into your Shopify theme
+  
+  IMPORTANT: This section requires dashboard assets to be deployed first!
+  Run `npm run shopify:deploy` to build and upload the required files:
+  - assets/torqued-dashboard.js (React application)
+  - assets/torqued-dashboard.css (Application styles)
+  
+  See THEME_IMPORT.md for detailed setup instructions.
 {% endcomment %}
 
 {{ 'torqued-dashboard.css' | asset_url | stylesheet_tag }}

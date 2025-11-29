@@ -62,6 +62,21 @@ npm run deploy:edge
 npm run ai:optimize
 ```
 
+## ðŸ”„ Branch Synchronization
+
+The repository includes an automated workflow to keep all branches in sync with master:
+
+- **Automatic Sync**: Triggers automatically when changes are pushed to `master`
+- **Manual Trigger**: Can be manually triggered from GitHub Actions with dry-run option
+- **Conflict Detection**: Automatically detects merge conflicts and creates issues for manual resolution
+- **Smart Skipping**: Skips copilot/* branches and branches already up-to-date
+
+To manually trigger the sync workflow:
+1. Go to Actions tab in GitHub
+2. Select "Sync All Branches with Master" workflow
+3. Click "Run workflow"
+4. Choose whether to perform a dry run (recommended first)
+
 ## ?? Advanced Scripts
 - `npm run analyze:bundle` - Advanced bundle analysis
 - `npm run performance:audit` - Lighthouse performance audit
@@ -119,7 +134,7 @@ npm run ai:optimize
 
 ---
 
-**Built for enterprises that demand the best.** This platform doesn't just meet industry standards—it sets new ones.
+**Built for enterprises that demand the best.** This platform doesn't just meet industry standardsï¿½it sets new ones.
 
 For detailed implementation guides, see individual documentation files in `/docs`.
 

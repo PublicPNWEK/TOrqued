@@ -261,6 +261,11 @@ For detailed information about these features, see [COMPETITIVE_ADVANTAGES.md](C
 ---
 
 **Questions or Issues?** Open an issue on GitHub or contact your development team.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
 ## ?? Support
 - 24/7 enterprise support
 - Dedicated success manager

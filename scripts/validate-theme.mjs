@@ -76,7 +76,6 @@ try {
 // Validate locales
 console.log('\n🌐 Validating locales:');
 try {
-  JSON.parse(fs.readFileSync('locales/en.default.json', 'utf8'));
   const locales = JSON.parse(fs.readFileSync('locales/en.default.json', 'utf8'));
   console.log('  ✓ en.default.json is valid JSON');
 } catch (err) {

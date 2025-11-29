@@ -3,6 +3,7 @@ import path from 'path';
 import { execSync } from 'child_process';
 
 console.log('🔨 Building for Shopify...');
+console.log('?? Building for Shopify...');
 execSync('npm run build', { stdio: 'inherit', env: { ...process.env, BUILD_TARGET: 'shopify' } });
 
 const assetDir = path.resolve('./dist/assets');
@@ -12,6 +13,7 @@ const cssFile = fs.readdirSync(assetDir).find(f => f.endsWith('.css'));
 
 if (!jsFile) {
   throw new Error('Build output (JS file) not found');
+  throw new Error('Build output JS file not found');
 }
 
 fs.copyFileSync(
@@ -27,4 +29,7 @@ if (cssFile) {
   console.log('✅ Build artifacts renamed (JS + CSS)');
 } else {
   console.log('✅ Build artifacts renamed (JS only, no CSS file found)');
+  console.log('? Build artifacts renamed (JS and CSS)');
+} else {
+  console.log('? Build artifacts renamed (JS only, no CSS generated)');
 }

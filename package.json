@@ -2,11 +2,13 @@
   "name": "torqued-automation-bundle",
   "version": "3.0.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview --port 4173",
     "shopify:deploy": "node scripts/build-shopify.mjs && node scripts/upload-to-shopify.mjs && node scripts/create-section.mjs",
+    "shopify:validate": "node scripts/validate-theme.mjs",
     "test": "vitest",
     "test:playwright": "playwright test",
     "lint": "eslint . --ext .ts,.tsx,.js,.jsx",
@@ -19,6 +21,7 @@
     "ai:optimize": "node scripts/ai-optimize.mjs"
   },
   "dependencies": {
+    "@tanstack/react-query": "4.35.0",
     "express": "4.18.2",
     "ioredis": "5.3.2",
     "node-fetch": "3.3.0",
@@ -31,10 +34,15 @@
     "@tanstack/react-query": "4.35.0",
     "zustand": "4.4.0",
     "ws": "8.13.0"
+    "ws": "8.13.0",
+    "zustand": "4.4.0"
   },
   "devDependencies": {
     "@vitejs/plugin-react": "4.3.1",
     "@playwright/test": "1.40.1",
+    "@types/react": "18.2.0",
+    "@types/react-dom": "18.2.0",
+    "@vitejs/plugin-react": "^5.1.1",
     "esbuild": "0.18.16",
     "eslint": "8.45.0",
     "lighthouse": "10.4.0",
@@ -43,8 +51,7 @@
     "vite": "5.3.0",
     "vitest": "1.6.0",
     "vite-bundle-analyzer": "0.7.0",
-    "@types/react": "18.2.0",
-    "@types/react-dom": "18.2.0"
+    "vitest": "1.6.0"
   },
   "engines": {
     "node": ">=18.0.0",

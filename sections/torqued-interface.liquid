@@ -19,9 +19,6 @@
 <script>
 window.__TORQUED_CONFIG__ = {
   shopDomain: "{{ shop.permanent_domain }}",
-  customerId: {{ customer.id | json }},
-  customerEmail: {{ customer.email | json }},
-  customerName: {{ customer.name | json }},
   leadDynoKey: "{{ section.settings.leaddyno_key }}",
   enableEdgeCaching: {{ settings.enable_edge_caching | json }},
   enableAiPersonalization: {{ settings.enable_ai_personalization | json }},

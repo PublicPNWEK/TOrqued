@@ -39,6 +39,8 @@ Thank you for your interest in contributing to TOrqued! This document provides g
    npm run type-check
    npm test
    npm run build
+   npm run build
+   npm test
    ```
 
 4. **Commit your changes**:

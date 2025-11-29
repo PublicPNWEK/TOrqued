@@ -1,0 +1,28 @@
+<div class="collection-section">
+  <h1>{{ collection.title }}</h1>
+  
+  <div class="collection-description">
+    {{ collection.description }}
+  </div>
+
+  <div class="product-grid">
+    {% for product in collection.products %}
+      <div class="product-item">
+        <a href="{{ product.url }}">
+          <img src="{{ product.featured_image | image_url: width: 300 }}" alt="{{ product.title }}">
+          <h3>{{ product.title }}</h3>
+          <p>{{ product.price | money }}</p>
+        </a>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Main collection",
+  "tag": "section",
+  "class": "section",
+  "settings": []
+}
+{% endschema %}

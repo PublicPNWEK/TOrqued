@@ -1,0 +1,10 @@
+{
+  "name": "Dashboard Page",
+  "sections": {
+    "main": {
+      "type": "torqued-interface"
+    }
+  },
+  "order": ["main"]
+}
+

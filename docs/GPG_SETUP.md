@@ -440,9 +440,9 @@ gpg --edit-key YOUR_KEY_ID
 expire
 
 # Choose new expiration time:
-# - 0 = key does not expire
-# - 1y = expires in 1 year
-# - 2y = expires in 2 years
+# - 0 = key does not expire (NOT RECOMMENDED for security)
+# - 1y = expires in 1 year (recommended)
+# - 2y = expires in 2 years (recommended)
 
 # Save changes
 save

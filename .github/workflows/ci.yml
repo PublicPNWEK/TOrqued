@@ -235,6 +235,7 @@ jobs:
 
   notify-failure:
     runs-on: ubuntu-latest
+    permissions: {}
     needs: [production-deployment]
     if: failure()
     steps:

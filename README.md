@@ -490,6 +490,18 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for comprehensive contribution guidelines
 - **[GPG Setup Guide](docs/GPG_SETUP.md)** - Setting up GPG signing for commits
 - **[Theme Structure Guide](docs/THEME_STRUCTURE.md)** - Shopify theme architecture and customization
 
+### AI Assistant Instructions
+For developers using AI coding assistants, we provide tailored instructions for different platforms:
+- **[GitHub Copilot](.github/copilot-instructions.md)** - Comprehensive Copilot guidelines
+- **[Claude AI](.github/claude-instructions.md)** - Claude-specific instructions
+- **[Gemini](.github/gemini-instructions.md)** - Google Gemini guidelines
+- **[OpenAI](.github/openai-instructions.md)** - ChatGPT/OpenAI instructions
+- **[Perplexity MCP](.github/perplexity-mcp-instructions.md)** - Perplexity MCP guidelines
+- **[Grok](.github/grok-instructions.md)** - xAI Grok instructions
+- **[Cursor](.cursorrules)** - Cursor editor rules
+
+These files help AI assistants understand the project architecture, coding conventions, security requirements, and best practices specific to TOrqued.
+
 ### Additional Resources
 - [Shopify Theme Documentation](https://shopify.dev/docs/themes)
 - [React Documentation](https://react.dev)

@@ -35,3 +35,13 @@ coverage/
 # Temporary files
 .tmp/
 tmp/
+
+# AI Assistant temporary files
+.aider*
+.cursor/
+.continue/
+
+# Reports and analysis
+reports/
+lighthouse-report.json
+bundle-analysis.html

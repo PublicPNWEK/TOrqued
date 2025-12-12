@@ -1,0 +1,107 @@
+# Cursor AI Rules for TOrqued
+
+## Project Overview
+TOrqued: Enterprise Shopify theme + React/TypeScript dashboard
+- Hybrid: Shopify Liquid templates + React 18 frontend
+- Build: Vite 5.3, TypeScript 5.6 strict mode
+- State: Zustand (UI) + React Query (server)
+- Shopify: Theme App Extensions with Liquid
+
+## Code Style
+
+### TypeScript/React
+- Functional components with hooks only (no classes)
+- Named exports (except App.tsx default export)
+- Explicit types, avoid `any`
+- PascalCase files: `OnboardingTour.tsx`
+- Keep components small, extract hooks for logic
+
+### Shopify Liquid
+- Document with `{% comment %}` blocks
+- **XSS Prevention**: Use `{{ var | json }}` for JS output
+- Assets: `{{ 'file.js' | asset_url }}`
+
+### Scripts
+- ES modules (`.mjs` or `"type": "module"`)
+- Shebang: `#!/usr/bin/env node`
+- Kebab-case: `build-shopify.mjs`
+
+## Critical Security
+
+### XSS Prevention in Liquid
+```liquid
+<!-- ✅ SAFE -->
+<script>
+const config = {{ customer | json }};
+</script>
+
+<!-- ❌ UNSAFE -->
+<script>
+const id = {{ customer.id }};
+</script>
+```
+
+### Secrets
+- Never commit `.env`
+- Use environment variables
+- Production: AWS/GCP Secrets Manager
+
+## Common Commands
+
+```bash
+npm ci                   # Install
+npm run dev             # Dev server
+npm run build           # Build
+npm run lint            # Lint
+npm test                # Test
+npm run shopify:validate # Validate theme
+npm run shopify:deploy  # Deploy to Shopify
+```
+
+## State Management
+
+### Zustand (UI State)
+```typescript
+const darkMode = useUIStore((s) => s.darkMode);
+```
+
+### React Query (Server State)
+```typescript
+const { data } = useQuery(['key'], fetchFn);
+```
+
+## Testing
+- Vitest: Unit/component tests
+- Playwright: E2E tests
+- Always validate theme before Shopify deploy
+
+## Build
+- Dev: Chunked bundles (vendor, query, ui, store)
+- Shopify: Single bundle (`BUILD_TARGET=shopify`)
+- Output: `dist/torqued-dashboard.{js,css}`
+
+## Patterns
+- Loading: `components/Skeleton.tsx`
+- Large lists: `components/VirtualizedTable.tsx`
+- Tours: `components/OnboardingTour.tsx`
+
+## Avoid
+❌ Class components
+❌ Default exports (except App)
+❌ `any` type
+❌ Unfiltered Liquid→JS
+❌ Committing secrets
+❌ Skipping validation
+
+## Structure
+```
+src/client/    # React app
+sections/      # Liquid sections
+templates/     # Liquid templates
+scripts/       # Build scripts (.mjs)
+```
+
+## Requirements
+- Node >= 18.0.0
+- npm >= 9.0.0
+- TypeScript 5.6.3

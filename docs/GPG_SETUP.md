@@ -596,7 +596,7 @@ Add to `~/.zshrc` or `~/.bash_profile`:
 export GPG_TTY=$(tty)
 ```
 
-**Apple Silicon (M1/M2) Notes:**
+**Apple Silicon Notes:**
 - Use ARM64 version of Homebrew (`/opt/homebrew`)
 - Pinentry path: `/opt/homebrew/bin/pinentry-mac`
 

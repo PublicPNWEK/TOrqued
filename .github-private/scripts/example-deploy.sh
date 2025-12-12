@@ -95,10 +95,21 @@ case $ENVIRONMENT in
         ;;
     production)
         log_warn "Deploying to PRODUCTION environment!"
-        read -p "Are you sure you want to deploy to production? (yes/no): " confirm
-        if [ "$confirm" != "yes" ]; then
-            log_error "Deployment cancelled by user"
-            exit 1
+        
+        # Check if running in CI/CD (non-interactive) environment
+        if [ -t 0 ]; then
+            # Interactive terminal available
+            read -p "Are you sure you want to deploy to production? (yes/no): " confirm
+            if [ "$confirm" != "yes" ]; then
+                log_error "Deployment cancelled by user"
+                exit 1
+            fi
+        else
+            # Non-interactive environment - check for CONFIRM_PRODUCTION env var
+            if [ "${CONFIRM_PRODUCTION:-}" != "yes" ]; then
+                log_error "Production deployment requires CONFIRM_PRODUCTION=yes in non-interactive mode"
+                exit 1
+            fi
         fi
         # Add production deployment commands here
         ;;

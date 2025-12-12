@@ -14,7 +14,7 @@ The `.github-private` directory is designed to store:
 ## First Steps
 
 ### 1. Review the Main README
-Start by reading the [main README](.github-private/README.md) to understand the complete structure and purpose.
+Start by reading the [main README](README.md) to understand the complete structure and purpose.
 
 ### 2. Understand What Goes Here vs. Public .github
 - **`.github`** (public): Templates and workflows visible to external contributors
@@ -182,7 +182,7 @@ cp .github-private/config/env-template.example .env.example
 ## Getting Help
 
 ### Questions?
-- Check the main [README](.github-private/README.md)
+- Check the main [README](README.md)
 - Review subdirectory README files
 - Contact your DevOps or security team
 

@@ -1,9 +1,58 @@
-<div class="page-width">
-  <h1>{{ page.title }}</h1>
-  <div class="rte">
-    {{ page.content }}
-  </div>
+<div class="page-width page-width--narrow">
+  <article class="page-content" itemscope itemtype="http://schema.org/WebPage">
+    <header class="page-header">
+      <h1 itemprop="headline">{{ page.title | escape }}</h1>
+      
+      {%- if section.settings.show_date and page.published_at -%}
+        <time datetime="{{ page.published_at | date: '%Y-%m-%d' }}" itemprop="datePublished">
+          {{ page.published_at | date: format: 'abbreviated_date' }}
+        </time>
+      {%- endif -%}
+    </header>
+    
+    {%- if page.content != blank -%}
+      <div class="rte" itemprop="text">
+        {{ page.content }}
+      </div>
+    {%- endif -%}
+  </article>
 </div>
+
+<style>
+  .page-width--narrow {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px 20px;
+  }
+  .page-header {
+    margin-bottom: 30px;
+  }
+  .page-header h1 {
+    margin: 0 0 10px;
+  }
+  .page-header time {
+    color: #666;
+    font-size: 0.875rem;
+  }
+  .rte {
+    line-height: 1.6;
+  }
+  .rte h2,
+  .rte h3,
+  .rte h4,
+  .rte h5,
+  .rte h6 {
+    margin-top: 1.5em;
+    margin-bottom: 0.5em;
+  }
+  .rte p {
+    margin-bottom: 1em;
+  }
+  .rte img {
+    max-width: 100%;
+    height: auto;
+  }
+</style>
 
 {% schema %}
 {
@@ -14,6 +63,12 @@
     {
       "type": "header",
       "content": "Page settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_date",
+      "label": "Show publication date",
+      "default": false
     }
   ]
 }

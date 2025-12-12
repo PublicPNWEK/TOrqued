@@ -1,21 +1,109 @@
+{%- liquid
+  assign products_per_page = section.settings.products_per_page | default: 24
+  assign columns = section.settings.columns | default: 4
+-%}
+
 <div class="collection-section">
-  <h1>{{ collection.title }}</h1>
-  
-  <div class="collection-description">
-    {{ collection.description }}
+  <div class="collection-header">
+    <h1>{{ collection.title | escape }}</h1>
+    
+    {%- if collection.description != blank -%}
+      <div class="collection-description rte">
+        {{ collection.description }}
+      </div>
+    {%- endif -%}
+    
+    {%- if collection.products_count > 0 -%}
+      <p class="collection-count">
+        {{ 'collections.general.items_with_count' | t: count: collection.products_count | default: collection.products_count }}
+        {{ 'collections.general.items' | t | default: 'products' }}
+      </p>
+    {%- endif -%}
   </div>
 
-  <div class="product-grid">
-    {% for product in collection.products %}
-      <div class="product-item">
-        <a href="{{ product.url }}">
-          <img src="{{ product.featured_image | image_url: width: 300 }}" alt="{{ product.title }}">
-          <h3>{{ product.title }}</h3>
-          <p>{{ product.price | money }}</p>
-        </a>
+  {%- paginate collection.products by products_per_page -%}
+    {%- if collection.products.size > 0 -%}
+      <div class="product-grid product-grid--{{ columns }}-col">
+        {%- for product in collection.products -%}
+          {%- liquid
+            assign loading = 'lazy'
+            if forloop.index <= 4
+              assign loading = 'eager'
+            endif
+          -%}
+          <div class="product-item">
+            <a href="{{ product.url }}" class="product-link">
+              {%- if product.featured_image -%}
+                <div class="product-image">
+                  <img
+                    src="{{ product.featured_image | image_url: width: 400 }}"
+                    srcset="{{ product.featured_image | image_url: width: 200 }} 200w,
+                            {{ product.featured_image | image_url: width: 300 }} 300w,
+                            {{ product.featured_image | image_url: width: 400 }} 400w,
+                            {{ product.featured_image | image_url: width: 600 }} 600w"
+                    sizes="(min-width: 990px) {{ 100 | divided_by: columns }}vw, (min-width: 750px) 50vw, 100vw"
+                    alt="{{ product.featured_image.alt | escape | default: product.title | escape }}"
+                    width="{{ product.featured_image.width }}"
+                    height="{{ product.featured_image.height }}"
+                    loading="{{ loading }}"
+                  >
+                </div>
+              {%- endif -%}
+              
+              <div class="product-info">
+                <h3 class="product-title">{{ product.title | escape }}</h3>
+                
+                <div class="product-price">
+                  {%- if product.compare_at_price > product.price -%}
+                    <span class="price--on-sale">
+                      {{ product.price | money }}
+                    </span>
+                    <span class="price--compare">
+                      <s>{{ product.compare_at_price | money }}</s>
+                    </span>
+                  {%- else -%}
+                    <span>{{ product.price | money }}</span>
+                  {%- endif -%}
+                </div>
+                
+                {%- unless product.available -%}
+                  <span class="badge badge--sold-out">
+                    {{ 'products.product.sold_out' | t | default: 'Sold out' }}
+                  </span>
+                {%- endunless -%}
+              </div>
+            </a>
+          </div>
+        {%- endfor -%}
       </div>
-    {% endfor %}
-  </div>
+
+      {%- if paginate.pages > 1 -%}
+        <nav class="pagination" role="navigation" aria-label="{{ 'general.pagination.label' | t | default: 'Pagination' }}">
+          {%- if paginate.previous -%}
+            <a href="{{ paginate.previous.url }}" class="pagination-link pagination-link--prev">
+              {{ 'general.pagination.previous' | t | default: 'Previous' }}
+            </a>
+          {%- endif -%}
+          
+          <span class="pagination-info">
+            {{ 'general.pagination.page' | t: current: paginate.current_page, total: paginate.pages | default: paginate.current_page }}
+            {{ 'general.pagination.of' | t | default: 'of' }}
+            {{ paginate.pages }}
+          </span>
+          
+          {%- if paginate.next -%}
+            <a href="{{ paginate.next.url }}" class="pagination-link pagination-link--next">
+              {{ 'general.pagination.next' | t | default: 'Next' }}
+            </a>
+          {%- endif -%}
+        </nav>
+      {%- endif -%}
+    {%- else -%}
+      <div class="collection-empty">
+        <p>{{ 'collections.general.no_products' | t | default: 'No products found' }}</p>
+      </div>
+    {%- endif -%}
+  {%- endpaginate -%}
 </div>
 
 {% schema %}
@@ -23,6 +111,29 @@
   "name": "Main collection",
   "tag": "section",
   "class": "section",
-  "settings": []
+  "settings": [
+    {
+      "type": "header",
+      "content": "Collection Grid"
+    },
+    {
+      "type": "range",
+      "id": "columns",
+      "min": 2,
+      "max": 5,
+      "step": 1,
+      "default": 4,
+      "label": "Products per row"
+    },
+    {
+      "type": "range",
+      "id": "products_per_page",
+      "min": 12,
+      "max": 48,
+      "step": 12,
+      "default": 24,
+      "label": "Products per page"
+    }
+  ]
 }
 {% endschema %}

@@ -1,19 +1,116 @@
-<div class="product-section">
-  <h1>{{ product.title }}</h1>
+{%- liquid
+  assign current_variant = product.selected_or_first_available_variant
+  assign featured_image = current_variant.featured_image | default: product.featured_image
+  assign product_form_id = 'product-form-' | append: section.id
+-%}
+
+<div class="product-section" itemscope itemtype="http://schema.org/Product">
+  <meta itemprop="url" content="{{ shop.url }}{{ product.url }}">
   
-  <div class="product-description">
-    {{ product.description }}
+  <div class="product-media">
+    {%- if featured_image -%}
+      <img
+        src="{{ featured_image | image_url: width: 800 }}"
+        srcset="{{ featured_image | image_url: width: 400 }} 400w,
+                {{ featured_image | image_url: width: 600 }} 600w,
+                {{ featured_image | image_url: width: 800 }} 800w,
+                {{ featured_image | image_url: width: 1200 }} 1200w"
+        sizes="(min-width: 750px) 50vw, 100vw"
+        alt="{{ featured_image.alt | escape }}"
+        width="{{ featured_image.width }}"
+        height="{{ featured_image.height }}"
+        loading="eager"
+        itemprop="image"
+      >
+    {%- endif -%}
   </div>
 
-  <div class="product-price">
-    {{ product.price | money }}
-  </div>
+  <div class="product-info">
+    <h1 itemprop="name">{{ product.title | escape }}</h1>
+    
+    <div class="product-price" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+      <meta itemprop="priceCurrency" content="{{ cart.currency.iso_code }}">
+      <link itemprop="availability" href="http://schema.org/{% if current_variant.available %}InStock{% else %}OutOfStock{% endif %}">
+      
+      {%- if current_variant.compare_at_price > current_variant.price -%}
+        <span class="price--on-sale">
+          <span class="visually-hidden">{{ 'products.product.sale_price' | t }}</span>
+          <span itemprop="price" content="{{ current_variant.price | divided_by: 100.0 }}">
+            {{ current_variant.price | money }}
+          </span>
+        </span>
+        <span class="price--compare">
+          <span class="visually-hidden">{{ 'products.product.regular_price' | t }}</span>
+          <s>{{ current_variant.compare_at_price | money }}</s>
+        </span>
+      {%- else -%}
+        <span itemprop="price" content="{{ current_variant.price | divided_by: 100.0 }}">
+          {{ current_variant.price | money }}
+        </span>
+      {%- endif -%}
+    </div>
 
-  {% form 'product', product %}
-    <button type="submit" name="add">
-      Add to cart
-    </button>
-  {% endform %}
+    {%- if product.description != blank -%}
+      <div class="product-description rte" itemprop="description">
+        {{ product.description }}
+      </div>
+    {%- endif -%}
+
+    {%- form 'product', product, id: product_form_id -%}
+      <input type="hidden" name="id" value="{{ current_variant.id }}">
+      
+      {%- unless product.has_only_default_variant -%}
+        {%- for option in product.options_with_values -%}
+          <div class="product-option">
+            <label for="Option-{{ section.id }}-{{ forloop.index0 }}">
+              {{ option.name | escape }}
+            </label>
+            <select
+              id="Option-{{ section.id }}-{{ forloop.index0 }}"
+              name="options[{{ option.name | escape }}]"
+              class="product-option-select"
+            >
+              {%- for value in option.values -%}
+                <option
+                  value="{{ value | escape }}"
+                  {% if option.selected_value == value %}selected{% endif %}
+                >
+                  {{ value | escape }}
+                </option>
+              {%- endfor -%}
+            </select>
+          </div>
+        {%- endfor -%}
+      {%- endunless -%}
+
+      <div class="product-quantity">
+        <label for="Quantity-{{ section.id }}">
+          {{ 'products.product.quantity.label' | t | default: 'Quantity' }}
+        </label>
+        <input
+          type="number"
+          id="Quantity-{{ section.id }}"
+          name="quantity"
+          value="1"
+          min="1"
+          class="quantity-input"
+        >
+      </div>
+
+      <button
+        type="submit"
+        name="add"
+        class="product-form-button"
+        {% unless current_variant.available %}disabled{% endunless %}
+      >
+        {%- if current_variant.available -%}
+          {{ 'products.product.add_to_cart' | t | default: 'Add to cart' }}
+        {%- else -%}
+          {{ 'products.product.sold_out' | t | default: 'Sold out' }}
+        {%- endif -%}
+      </button>
+    {%- endform -%}
+  </div>
 </div>
 
 {% schema %}
@@ -21,6 +118,17 @@
   "name": "Main product",
   "tag": "section",
   "class": "section",
-  "settings": []
+  "settings": [
+    {
+      "type": "header",
+      "content": "Product Display"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_sticky_add_to_cart",
+      "label": "Enable sticky add to cart",
+      "default": false
+    }
+  ]
 }
 {% endschema %}

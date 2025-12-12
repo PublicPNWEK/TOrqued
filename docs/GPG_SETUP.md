@@ -804,6 +804,7 @@ before_script:
 ```
 
 **Security Note:** Store `GPG_PRIVATE_KEY` as a masked CI/CD variable in GitLab project settings (Settings → CI/CD → Variables) and enable masking to prevent exposure in logs.
+
 ### Jenkins
 
 Use the GPG Plugin:
@@ -816,6 +817,9 @@ Use the GPG Plugin:
      sh 'git config --global user.signingkey YOUR_KEY_ID'
      sh 'git config --global commit.gpgsign true'
    }
+   ```
+
+**Security Note:** Store the GPG private key as a secret file credential in Jenkins credentials store, and ensure proper access controls are configured.
 
 ### Best Practices for CI/CD
 

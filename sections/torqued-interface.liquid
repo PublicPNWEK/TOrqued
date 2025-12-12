@@ -14,7 +14,6 @@
 
 <div class="torqued-app-container">
   <div id="torqued-root" role="main" aria-label="Torqued Dashboard"></div>
-  <div id="torqued-root"></div>
 </div>
 
 <script>
@@ -24,7 +23,6 @@ window.__TORQUED_CONFIG__ = {
   customerId: {{ customer.id | json }},
   customerEmail: {{ customer.email | json }},
   customerName: {{ customer.name | json }},
-  leadDynoKey: "{{ section.settings.leaddyno_key }}",
   enableEdgeCaching: {{ settings.enable_edge_caching | json }},
   enableAiPersonalization: {{ settings.enable_ai_personalization | json }},
   enableFraudDetection: {{ settings.enable_fraud_detection | json }},

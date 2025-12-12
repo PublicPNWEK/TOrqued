@@ -620,7 +620,9 @@ export GPG_TTY=$(tty)
 
 **PowerShell Configuration:**
 ```powershell
-$env:GPG_TTY = "$(Get-Location)"
+# PowerShell does not require GPG_TTY to be set.
+# If you encounter issues with passphrase prompts, configure the pinentry program instead.
+# See Gpg4win documentation for details: https://www.gpg4win.org/documentation.html
 ```
 
 **Windows Subsystem for Linux (WSL):**

@@ -1,14 +1,14 @@
-import { useEffect } from 'react';
+
 import { useQuery } from '@tanstack/react-query';
 
 interface AnalyticsEvent {
   event: string;
-  properties: Record<string, any>;
+  properties: Record<string, unknown>;
   timestamp: number;
 }
 
 export const useAnalytics = () => {
-  const track = (event: string, properties: Record<string, any> = {}) => {
+  const track = (event: string, properties: Record<string, unknown> = {}) => {
     const data: AnalyticsEvent = {
       event,
       properties: {
@@ -30,7 +30,7 @@ export const useAnalytics = () => {
         body: JSON.stringify(data)
       }),
       // Real-time WebSocket
-      (window as any).ws?.send(JSON.stringify({ type: 'analytics', data }))
+      (window as { ws?: { send: (data: string) => void } }).ws?.send(JSON.stringify({ type: 'analytics', data }))
     ]).catch(console.error);
   };
   

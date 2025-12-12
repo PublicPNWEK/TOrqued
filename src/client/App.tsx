@@ -6,7 +6,7 @@ import { OnboardingTour } from './components/OnboardingTour'
 import { Skeleton } from './components/Skeleton'
 
 export default function App() {
-  const dark = useUIStore((s:any) => s.darkMode)
+  const dark = useUIStore((s) => s.darkMode)
   const rows = Array.from({length: 10000}).map((_,i)=>({id:i, name:`User ${i}`}))
   return (
     <ReactQueryProvider>

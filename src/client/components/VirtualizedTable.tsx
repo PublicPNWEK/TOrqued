@@ -1,8 +1,8 @@
 import React from 'react'
 import { FixedSizeList as List } from 'react-window'
 
-export const VirtualizedTable = ({ rows }: { rows: any[] }) => {
-  const Row = ({ index, style }: any) => (
+export const VirtualizedTable = ({ rows }: { rows: unknown[] }) => {
+  const Row = ({ index, style }: { index: number; style: React.CSSProperties }) => (
     <div style={style} className='p-2 border-b'>{JSON.stringify(rows[index])}</div>
   )
   return (

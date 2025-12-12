@@ -10,8 +10,8 @@
   See THEME_IMPORT.md for detailed setup instructions.
 {% endcomment %}
 
+{%- comment -%}Preload critical assets for better performance{%- endcomment -%}
 {%- liquid
-  # Preload critical assets for better performance
   assign dashboard_css = 'torqued-dashboard.css' | asset_url
   assign dashboard_js = 'torqued-dashboard.js' | asset_url
 -%}

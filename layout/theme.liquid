@@ -7,8 +7,8 @@
     <meta name="theme-color" content="{{ settings.theme_color | default: '#000000' }}">
     <link rel="canonical" href="{{ canonical_url }}">
     
+    {%- comment -%}Preconnect to required domains for faster loading{%- endcomment -%}
     {%- liquid
-      # Preconnect to required domains for faster loading
       echo '<link rel="preconnect" href="https://cdn.shopify.com" crossorigin>'
       echo '<link rel="dns-prefetch" href="https://cdn.shopify.com">'
     -%}

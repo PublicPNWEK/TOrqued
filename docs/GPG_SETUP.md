@@ -810,9 +810,9 @@ Use the GPG Plugin:
    ```groovy
    withCredentials([file(credentialsId: 'gpg-key', variable: 'GPG_KEY_FILE')]) {
      sh 'gpg --import $GPG_KEY_FILE'
+     sh 'git config --global user.signingkey YOUR_KEY_ID'
      sh 'git config --global commit.gpgsign true'
    }
-   ```
 
 ### Best Practices for CI/CD
 

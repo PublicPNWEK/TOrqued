@@ -29,6 +29,19 @@ cd TOrqued
 
 # Install dependencies
 npm install
+**📚 For complete setup instructions, troubleshooting, and best practices, see our comprehensive [GPG Setup Guide](../docs/GPG_SETUP.md).**
+
+**⚠️ If you encounter GPG verification errors or see warnings about unverified signatures:**
+- Full guide: [GPG Setup Guide](../docs/GPG_SETUP.md)
+- Quick fixes: [GPG Quick Fix Guide](../GPG_QUICK_FIX.md)
+
+Common GPG-related issues covered in the guide:
+- "Can't check signature: No public key"
+- Expired GPG keys and renewal instructions
+- GitHub not showing "Verified" badge
+- Platform-specific setup (macOS, Windows, Linux)
+- IDE integration (VS Code, IntelliJ, etc.)
+- CI/CD configuration
 
 # Copy environment file
 cp .env.example .env

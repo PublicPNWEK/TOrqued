@@ -76,7 +76,6 @@ try {
 // Validate locales
 console.log('\n🌐 Validating locales:');
 try {
-  JSON.parse(fs.readFileSync('locales/en.default.json', 'utf8'));
   const locales = JSON.parse(fs.readFileSync('locales/en.default.json', 'utf8'));
   console.log('  ✓ en.default.json is valid JSON');
 } catch (err) {
@@ -96,11 +95,6 @@ if (fs.existsSync('templates')) {
 } else {
   console.log('  ✗ templates directory does not exist');
   isValid = false;
-const templates = fs.readdirSync('templates');
-const templateCount = templates.length;
-console.log(`  ℹ Found ${templateCount} template(s)`);
-if (templateCount === 0) {
-  console.log('  ⚠ Warning: No templates found (at least index.liquid or index.json recommended)');
 }
 
 // Check for sections
@@ -115,11 +109,6 @@ if (fs.existsSync('sections')) {
 } else {
   console.log('  ✗ sections directory does not exist');
   isValid = false;
-const sections = fs.readdirSync('sections').filter(f => f.endsWith('.liquid'));
-const sectionCount = sections.length;
-console.log(`  ℹ Found ${sectionCount} section(s)`);
-if (sectionCount === 0) {
-  console.log('  ⚠ Warning: No sections found');
 }
 
 // Final result

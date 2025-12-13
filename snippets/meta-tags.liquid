@@ -1,22 +1,36 @@
 {%- comment -%}
   Meta tags for SEO and social media
+  Optimized to remove duplicate tags and improve performance
 {%- endcomment -%}
 
-<meta property="og:site_name" content="{{ shop.name }}">
-<meta property="og:url" content="{{ canonical_url }}">
-<meta property="og:title" content="{{ page_title | escape }}">
+{%- liquid
+  assign og_title = page_title | escape
+  assign og_description = page_description | default: shop.description | escape
+  assign og_url = canonical_url
+-%}
+
+<meta property="og:site_name" content="{{ shop.name | escape }}">
+<meta property="og:url" content="{{ og_url }}">
+<meta property="og:title" content="{{ og_title }}">
 <meta property="og:type" content="website">
-<meta property="og:description" content="{{ page_description | escape }}">
+<meta property="og:description" content="{{ og_description }}">
 
 {%- if page_image -%}
-  <meta property="og:image" content="{{ page_image | image_url: width: 1200 }}">
-  <meta property="og:image:secure_url" content="{{ page_image | image_url: width: 1200 }}">
-  <meta property="og:image" content="http:{{ page_image | image_url: width: 1200 }}">
-  <meta property="og:image:secure_url" content="https:{{ page_image | image_url: width: 1200 }}">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
+  {%- liquid
+    assign og_image_url = page_image | image_url: width: 1200
+    assign og_image_width = 1200
+    assign og_image_height = 630
+  -%}
+  <meta property="og:image" content="{{ og_image_url }}">
+  <meta property="og:image:secure_url" content="{{ og_image_url }}">
+  <meta property="og:image:width" content="{{ og_image_width }}">
+  <meta property="og:image:height" content="{{ og_image_height }}">
+  <meta property="og:image:alt" content="{{ og_title }}">
 {%- endif -%}
 
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="{{ page_title | escape }}">
-<meta name="twitter:description" content="{{ page_description | escape }}">
+<meta name="twitter:title" content="{{ og_title }}">
+<meta name="twitter:description" content="{{ og_description }}">
+{%- if page_image -%}
+<meta name="twitter:image" content="{{ og_image_url }}">
+{%- endif -%}

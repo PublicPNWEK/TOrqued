@@ -9,6 +9,7 @@ var _page = require("./page");
 var _download = require("./download");
 var _instrumentation = require("./instrumentation");
 var _artifact = require("./artifact");
+var _socksClientCertificatesInterceptor = require("./socksClientCertificatesInterceptor");
 /**
  * Copyright (c) Microsoft Corporation.
  *
@@ -41,8 +42,26 @@ class Browser extends _instrumentation.SdkObject {
     this.instrumentation.onBrowserOpen(this);
   }
   async newContext(metadata, options) {
+    var _options$clientCertif;
     (0, _browserContext.validateBrowserContextOptions)(options, this.options);
-    const context = await this.doCreateNewContext(options);
+    let clientCertificatesProxy;
+    if ((_options$clientCertif = options.clientCertificates) !== null && _options$clientCertif !== void 0 && _options$clientCertif.length) {
+      clientCertificatesProxy = new _socksClientCertificatesInterceptor.ClientCertificatesProxy(options);
+      options = {
+        ...options
+      };
+      options.proxyOverride = await clientCertificatesProxy.listen();
+      options.internalIgnoreHTTPSErrors = true;
+    }
+    let context;
+    try {
+      context = await this.doCreateNewContext(options);
+    } catch (error) {
+      var _clientCertificatesPr;
+      await ((_clientCertificatesPr = clientCertificatesProxy) === null || _clientCertificatesPr === void 0 ? void 0 : _clientCertificatesPr.close());
+      throw error;
+    }
+    context._clientCertificatesProxy = clientCertificatesProxy;
     if (options.storageState) await context.setStorageState(metadata, options.storageState);
     return context;
   }
@@ -68,8 +87,8 @@ class Browser extends _instrumentation.SdkObject {
     };
   }
   async stopPendingOperations(reason) {
-    var _this$_contextForReus, _this$_contextForReus2;
-    await ((_this$_contextForReus = this._contextForReuse) === null || _this$_contextForReus === void 0 ? void 0 : (_this$_contextForReus2 = _this$_contextForReus.context) === null || _this$_contextForReus2 === void 0 ? void 0 : _this$_contextForReus2.stopPendingOperations(reason));
+    var _this$_contextForReus;
+    await ((_this$_contextForReus = this._contextForReuse) === null || _this$_contextForReus === void 0 || (_this$_contextForReus = _this$_contextForReus.context) === null || _this$_contextForReus === void 0 ? void 0 : _this$_contextForReus.stopPendingOperations(reason));
   }
   _downloadCreated(page, uuid, url, suggestedFilename) {
     const download = new _download.Download(page, this.options.downloadsPath || '', uuid, url, suggestedFilename);

@@ -214,8 +214,7 @@ After importing the theme:
 3. The Torqued dashboard will automatically load on that page
 4. Configure dashboard settings in Theme Settings → Torqued Configuration
 
-## 🔧 Advanced Scripts
-**What you'll see:**
+**What you'll see after deployment:**
 ```
 🔨 Building for Shopify...
 [vite builds your app]
@@ -241,7 +240,7 @@ To manually trigger the sync workflow:
 3. Click "Run workflow"
 4. Choose whether to perform a dry run (recommended first)
 
-## ?? Advanced Scripts
+## 🔧 Advanced Scripts
 - `npm run analyze:bundle` - Advanced bundle analysis
 - `npm run performance:audit` - Lighthouse performance audit
 - `npm run security:scan` - Security vulnerability scanning
@@ -297,22 +296,13 @@ To manually trigger the sync workflow:
 - AR/VR shopping experiences
 This takes 1-3 minutes depending on your internet speed.
 
-**Built for enterprises that demand the best.** This platform doesn't just meet industry standards�it sets new ones.
 #### Step 2: Add to Your Shopify Theme
 
-**Built for enterprises that demand the best.** This platform doesn't just meet industry standards�it sets new ones.
 Now that the files are uploaded, you need to add the dashboard to a page:
 
-**Built for enterprises that demand the best.** This platform doesn't just meet industry standards—it sets new ones.
-**Built for enterprises that demand the best.** This platform doesn't just meet industry standards�it sets new ones.
 1. **Log into Shopify Admin**
 
 2. **Go to Online Store → Themes**
-
-## 📞 Support
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 3. **Click "Customize" on your current theme**
 
@@ -371,14 +361,12 @@ Whenever you make changes to the code:
 
 **Problem:** The section isn't showing up.
 
-**Built for enterprises that demand the best.** This platform doesn't just meet industry standards�it sets new ones.
 **Solution:**
 - Make sure you ran `npm run shopify:deploy` successfully
 - Check that you added the "Torqued Dashboard" section in the theme customizer
 - Try refreshing the page with `Ctrl+Shift+R` (hard refresh)
 - Check browser console for JavaScript errors (press F12)
 
-**Built for enterprises that demand the best.** This platform doesn't just meet industry standards�it sets new ones.
 ### "Build output not found" error
 
 **Problem:** The build didn't create the expected files.
@@ -438,46 +426,6 @@ See `.env.example` for all available configuration options.
 
 For detailed information about these features, see [COMPETITIVE_ADVANTAGES.md](COMPETITIVE_ADVANTAGES.md).
 
-## Contributing
-
-We welcome contributions from the community! Whether you're fixing bugs, adding features, or improving documentation, your help is appreciated.
-
-### Getting Started with Contributing
-
-1. **Read the Contributing Guide**: See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed guidelines
-2. **Set up GPG Signing**: Follow our [GPG Setup Guide](docs/GPG_SETUP.md) to sign your commits
-3. **Understand the Theme Structure**: Review [Theme Structure Documentation](docs/THEME_STRUCTURE.md)
-4. **Follow Coding Standards**: Maintain consistency with existing code
-5. **Write Tests**: Add tests for new features
-6. **Submit Pull Requests**: Follow our PR process
-
-### Quick Contribution Steps
-
-```bash
-# Fork and clone the repository
-git clone https://github.com/YOUR_USERNAME/TOrqued.git
-cd TOrqued
-
-# Install dependencies
-npm install
-
-# Create a feature branch
-git checkout -b feature/your-feature-name
-
-# Make your changes and test
-npm run lint
-npm test
-npm run build
-
-# Commit your changes (with GPG signing)
-git commit -S -m "feat: description of your changes"
-
-# Push and create a pull request
-git push origin feature/your-feature-name
-```
-
-See [CONTRIBUTING.md](CONTRIBUTING.md) for comprehensive contribution guidelines.
-
 ## Documentation
 
 ### Core Documentation
@@ -500,24 +448,6 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for comprehensive contribution guidelines
 
 **Questions or Issues?** Open an issue on GitHub or contact your development team.
 
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## ?? Support
-## Support
-
-- 24/7 enterprise support
-- Dedicated success manager
-- Custom training and onboarding
-- Priority bug fixes and feature requests
-
----
-
-**License**: See [LICENSE](LICENSE) for details.
-
-**Contributing**: We welcome contributions! See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
-
 ## 🤝 Contributing
 
 We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines on:
@@ -533,14 +463,11 @@ Some commits in this repository may show GPG signature verification warnings. Th
 - Understanding GPG verification warnings
 - Setting up GPG signing for your commits (optional)
 - Troubleshooting GPG-related issues
-## 🔐 Contributing
-
-For information on setting up GPG commit signing and troubleshooting signature verification issues, see [GPG_SETUP.md](GPG_SETUP.md).
-## 🤝 Contributing
 
 For information on setting up GPG commit signing and contributing to the project, see:
 - [GPG Setup Guide](GPG_SETUP.md) - GPG troubleshooting and setup
 - [Contributing Guide](.github/CONTRIBUTING.md) - Development workflow and guidelines
+
 ## 🔄 Development
 
 ### Branch Synchronization
@@ -552,6 +479,13 @@ To keep feature branches in sync with master, use the automated sync script:
 ```
 
 For more details, see [SYNC_BRANCHES.md](SYNC_BRANCHES.md).
+
+## 💼 Support
+
+- 24/7 enterprise support
+- Dedicated success manager
+- Custom training and onboarding
+- Priority bug fixes and feature requests
 
 ## 📄 License
 

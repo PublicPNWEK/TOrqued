@@ -2,6 +2,17 @@
 
 This guide helps you set up GPG commit signing and resolve common GPG verification issues in the TOrqued repository.
 
+> **📚 For the complete, comprehensive GPG setup guide including:**
+> - Detailed platform-specific instructions (macOS, Windows, Linux)
+> - IDE integration (VS Code, IntelliJ, etc.)
+> - Security best practices
+> - CI/CD configuration
+> - Advanced troubleshooting
+>
+> **See: [docs/GPG_SETUP.md](docs/GPG_SETUP.md)**
+
+This file provides quick reference and common troubleshooting. For step-by-step setup instructions from scratch, use the comprehensive guide linked above.
+
 ## What is GPG Signing?
 
 GPG (GNU Privacy Guard) signing allows you to cryptographically sign your commits, proving that you are the author. GitHub displays a "Verified" badge next to signed commits.

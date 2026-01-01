@@ -1,5 +1,5 @@
 import React from 'react'
-export const ComparisonMode = ({ a, b }: any) => {
+export const ComparisonMode = ({ a, b }: { a: number; b: number }) => {
   const diff = (b - a)
   const pct = a ? ((diff / a) * 100).toFixed(1) : 'N/A'
   return <div>Change: ${diff} ({pct}%)</div>

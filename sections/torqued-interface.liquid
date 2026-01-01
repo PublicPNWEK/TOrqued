@@ -10,27 +10,72 @@
   See THEME_IMPORT.md for detailed setup instructions.
 {% endcomment %}
 
-{{ 'torqued-dashboard.css' | asset_url | stylesheet_tag }}
+{%- comment -%}Preload critical assets for better performance{%- endcomment -%}
+{%- liquid
+  assign dashboard_css = 'torqued-dashboard.css' | asset_url
+  assign dashboard_js = 'torqued-dashboard.js' | asset_url
+-%}
 
-<div class="torqued-app-container">
-  <div id="torqued-root" role="main" aria-label="Torqued Dashboard"></div>
+<link rel="preload" href="{{ dashboard_css }}" as="style">
+<link rel="preload" href="{{ dashboard_js }}" as="script">
+
+{{ dashboard_css | stylesheet_tag }}
+
+<div class="torqued-app-container{% if section.settings.full_width %} torqued-full-width{% endif %}">
+  <div id="torqued-root" role="main" aria-label="Torqued Dashboard" aria-busy="true">
+    {%- comment -%} Loading placeholder for better UX {%- endcomment -%}
+    <div class="torqued-loading" aria-live="polite">
+      <p>{{ 'general.loading' | t | default: 'Loading dashboard...' }}</p>
+    </div>
+  </div>
 </div>
 
 <script>
-window.__TORQUED_CONFIG__ = {
-  shopDomain: "{{ shop.permanent_domain }}",
-  leadDynoKey: {{ section.settings.leaddyno_key | json }},
-  customerId: {{ customer.id | json }},
-  customerEmail: {{ customer.email | json }},
-  customerName: {{ customer.name | json }},
-  enableEdgeCaching: {{ settings.enable_edge_caching | json }},
-  enableAiPersonalization: {{ settings.enable_ai_personalization | json }},
-  enableFraudDetection: {{ settings.enable_fraud_detection | json }},
-  fullWidthMode: {{ section.settings.full_width | json }}
-};
+  {%- comment -%}
+    Global configuration for Torqued Dashboard
+    Using json filter throughout for XSS protection (see repository memory)
+  {%- endcomment -%}
+  window.__TORQUED_CONFIG__ = {
+    shopDomain: {{ shop.permanent_domain | json }},
+    leadDynoKey: {{ section.settings.leaddyno_key | json }},
+    customerId: {{ customer.id | json }},
+    customerEmail: {{ customer.email | json }},
+    customerName: {{ customer.name | json }},
+    customerTags: {{ customer.tags | json }},
+    locale: {{ request.locale.iso_code | json }},
+    currency: {{ cart.currency.iso_code | json }},
+    enableEdgeCaching: {{ settings.enable_edge_caching | default: false | json }},
+    enableAiPersonalization: {{ settings.enable_ai_personalization | default: false | json }},
+    enableFraudDetection: {{ settings.enable_fraud_detection | default: false | json }},
+    fullWidthMode: {{ section.settings.full_width | json }}
+  };
 </script>
 
-<script src="{{ 'torqued-dashboard.js' | asset_url }}" defer></script>
+<script src="{{ dashboard_js }}" defer></script>
+
+<style>
+  .torqued-app-container {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  .torqued-full-width {
+    max-width: none;
+    padding: 0;
+  }
+  .torqued-loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 400px;
+    color: #666;
+    font-size: 16px;
+  }
+  #torqued-root[aria-busy="false"] .torqued-loading {
+    display: none;
+  }
+</style>
 
 {% schema %}
 {

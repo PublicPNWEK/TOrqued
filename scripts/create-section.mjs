@@ -1,14 +1,6 @@
-import fs from 'fs';
-import fetch from 'node-fetch';
+import { validateShopifyEnv, uploadShopifyAsset } from './shopify-client.mjs';
 
-const SHOP = process.env.SHOPIFY_STORE;
-const TOKEN = process.env.SHOPIFY_TOKEN;
-const THEME_ID = process.env.SHOPIFY_THEME_ID;
-
-if (!SHOP || !TOKEN || !THEME_ID) {
-  console.error('? Missing required environment variables.');
-  process.exit(1);
-}
+const { SHOP, TOKEN, THEME_ID } = validateShopifyEnv();
 
 const sectionKey = 'sections/torqued-interface.liquid';
 
@@ -44,23 +36,11 @@ window.__TORQUED_CONFIG__ = {
 `;
 
 (async () => {
-  const res = await fetch(
-    `https://${SHOP}/admin/api/2024-01/themes/${THEME_ID}/assets.json`,
-    {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-Shopify-Access-Token': TOKEN
-      },
-      body: JSON.stringify({ asset: { key: sectionKey, value: template } })
-    }
-  );
-
-  if (!res.ok) {
-    const t = await res.text();
-    console.error(`? Section upload failed: ${t}`);
+  try {
+    await uploadShopifyAsset(SHOP, TOKEN, THEME_ID, sectionKey, template);
+    console.log('✅ Shopify Liquid section deployed');
+  } catch (err) {
+    console.error(`❌ ${err.message}`);
     process.exit(1);
   }
-
-  console.log('? Shopify Liquid section deployed');
 })();

@@ -1,0 +1,73 @@
+# .github-private/.gitignore
+# Ignore sensitive files in the private directory
+
+# Secrets and credentials
+*.key
+*.pem
+*.p12
+*.pfx
+*.cer
+*.crt
+secrets.*
+credentials.*
+*secret*
+*password*
+
+# Environment files with actual values
+.env
+.env.*
+!.env.example
+!env-template.example
+
+# Private configuration with sensitive data
+config.json
+config.yml
+config.yaml
+settings.json
+*-private.*
+
+# Logs that might contain sensitive information
+*.log
+logs/
+
+# Backup files
+*.bak
+*.backup
+*.old
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Temporary files
+*.tmp
+*.temp
+~*
+
+# Private notes and documentation
+PRIVATE_*
+*_PRIVATE.*
+internal-notes.*
+
+# API tokens and keys
+*token*
+*apikey*
+
+# SSH and certificates
+id_rsa*
+id_ed25519*
+known_hosts
+
+# Database dumps
+*.sql
+*.dump
+
+# Allow README files
+!README.md
+!**/README.md
+
+# Allow example and template files
+!*.example
+!*-template.*
+!example-*

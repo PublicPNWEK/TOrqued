@@ -47,6 +47,8 @@
 
 ## 📦 Deployment Options
 
+**🌐 Platform-Agnostic Design**: This project can be deployed to **any cloud provider** including Google Cloud Platform, AWS, Azure, or self-hosted environments. See [Platform-Agnostic Deployment Guide](docs/PLATFORM_AGNOSTIC_DEPLOYMENT.md) for comprehensive deployment instructions.
+
 ### Option 1: Import Theme from GitHub (Recommended)
 
 You can import this theme directly into your Shopify store:
@@ -435,6 +437,7 @@ For detailed information about these features, see [COMPETITIVE_ADVANTAGES.md](C
 - **[COMPETITIVE_ADVANTAGES.md](COMPETITIVE_ADVANTAGES.md)** - Advanced features and capabilities
 
 ### Developer Guides
+- **[Platform-Agnostic Deployment Guide](docs/PLATFORM_AGNOSTIC_DEPLOYMENT.md)** - Deploy to GCP, AWS, or any cloud provider
 - **[GPG Setup Guide](docs/GPG_SETUP.md)** - Setting up GPG signing for commits
 - **[Theme Structure Guide](docs/THEME_STRUCTURE.md)** - Shopify theme architecture and customization
 

@@ -35,3 +35,7 @@ coverage/
 # Temporary files
 .tmp/
 tmp/
+
+# Platform-specific files
+.vercel/
+vercel.json

@@ -43,7 +43,16 @@
 1. `npm ci`
 2. Copy `.env.example` to `.env` and configure your environment
 3. `node scripts/migrate-secrets.js --provider=aws` (or `--provider=gcp`)
-4. `npm run dev`
+4. `npm run validate:quick` - Validate environment and dependencies
+5. `npm run dev`
+
+### Deployment Validation
+Before deploying, validate your setup:
+```bash
+npm run validate:deployment  # Standard validation checks
+npm run validate:all        # Comprehensive validation with tests
+npm run health:check        # Post-deployment health verification
+```
 
 ## 📦 Deployment Options
 
@@ -438,6 +447,8 @@ For detailed information about these features, see [COMPETITIVE_ADVANTAGES.md](C
 
 ### Developer Guides
 - **[Platform-Agnostic Deployment Guide](docs/PLATFORM_AGNOSTIC_DEPLOYMENT.md)** - Deploy to GCP, AWS, or any cloud provider
+- **[Deployment Workflows](docs/DEPLOYMENT_WORKFLOWS.md)** - Detailed deployment procedures and CI/CD setup
+- **[Deployment Troubleshooting](docs/DEPLOYMENT_TROUBLESHOOTING.md)** - Comprehensive troubleshooting guide
 - **[GPG Setup Guide](docs/GPG_SETUP.md)** - Setting up GPG signing for commits
 - **[Theme Structure Guide](docs/THEME_STRUCTURE.md)** - Shopify theme architecture and customization
 

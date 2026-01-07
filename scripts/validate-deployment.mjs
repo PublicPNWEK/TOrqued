@@ -407,8 +407,10 @@ async function main() {
   log('║   TOrqued Deployment Validation Suite         ║', 'blue');
   log('╚════════════════════════════════════════════════╝\n', 'blue');
 
-  const runAll = process.argv.includes('--all') || process.argv.length === 2;
+
+  const runAll = process.argv.includes('--all');
   const runQuick = process.argv.includes('--quick');
+
 
   // Quick checks (fast, essential)
   await checkNodeVersion();

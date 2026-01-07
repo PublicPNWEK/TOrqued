@@ -357,7 +357,7 @@ async function checkSecretsProvider() {
       return false;
     }
   } else {
-    error(`Invalid SECRETS_PROVIDER: ${SECRETS_PROVIDER} (must be 'aws' or 'gcp')`);
+    error("Invalid SECRETS_PROVIDER value configured (must be 'aws' or 'gcp')");
     results.failed++;
     return false;
   }

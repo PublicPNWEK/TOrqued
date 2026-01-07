@@ -5,9 +5,6 @@
  * Validates that deployed application is functioning correctly
  */
 
-import { createRequire } from 'module';
-const require = createRequire(import.meta.url);
-
 const colors = {
   reset: '\x1b[0m',
   green: '\x1b[32m',

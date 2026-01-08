@@ -36,6 +36,10 @@ coverage/
 .tmp/
 tmp/
 
+# Terraform
+**/.terraform/
+infra/terraform/modules/**/.terraform.lock.hcl
+
 # Platform-specific files
 .vercel/
 vercel.json

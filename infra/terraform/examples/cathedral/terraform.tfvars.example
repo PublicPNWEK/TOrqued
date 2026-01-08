@@ -1,0 +1,35 @@
+# Example Terraform variables for the cathedral_baseline example stack.
+# Copy to terraform.tfvars and fill in your actual Azure resource IDs.
+
+environment_prefix = "prod"
+location           = "eastus"
+resource_group_name = "my-rg"
+
+# Replace with your actual VNet and subnet IDs:
+vnet_id                    = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/my-rg/providers/Microsoft.Network/virtualNetworks/my-vnet"
+private_endpoint_subnet_id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/my-rg/providers/Microsoft.Network/virtualNetworks/my-vnet/subnets/pe-subnet"
+
+# Replace with your actual Key Vault and Storage Account IDs:
+key_vault_id   = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/my-rg/providers/Microsoft.KeyVault/vaults/my-kv"
+storage_account_id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/my-rg/providers/Microsoft.Storage/storageAccounts/mystg"
+
+# Enable storage private endpoints (optional):
+enable_storage_private_endpoints = true
+
+# Log Analytics workspace
+create_log_analytics_workspace = true
+# log_analytics_workspace_id = "" # Use existing workspace (if create=false)
+
+# Policy assignments
+enable_policy_assignments = true
+policy_scope_type        = "resource_group"
+policy_scope             = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/my-rg"
+required_tags            = ["Owner", "CostCenter", "Environment"]
+
+# Optional: use a built-in or custom policy for requiring diagnostics:
+# diagnostics_policy_definition_id = "/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/policyDefinitions/my-diag-policy"
+
+tags = {
+  Project = "TOrqued"
+  Team    = "Engineering"
+}

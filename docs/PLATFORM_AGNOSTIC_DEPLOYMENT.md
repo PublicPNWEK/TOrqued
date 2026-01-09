@@ -132,6 +132,36 @@ Automated deployment via GitHub Actions:
 - GitHub Actions workflow automatically builds and deploys
 - Custom domain supported via CNAME
 
+#### GitHub Pages Configuration
+
+The project includes proper GitHub Pages setup:
+- `.nojekyll` file prevents Jekyll from processing build artifacts
+- `404.html` provides SPA routing support for client-side navigation
+- Base path configured in `vite.config.ts` as `/TOrqued/`
+- Automatic deployment via `.github/workflows/deploy-pages.yml`
+
+#### Manual Deployment
+
+To manually deploy to GitHub Pages:
+```bash
+# Build with production configuration
+NODE_ENV=production npm run build
+
+# The dist/ directory now contains:
+# - index.html (main application)
+# - 404.html (SPA routing fallback)
+# - .nojekyll (prevents Jekyll processing)
+# - assets/ (JavaScript bundles)
+# - CNAME (custom domain, if configured)
+```
+
+#### Custom Domain Setup
+
+If using a custom domain:
+1. Add CNAME file in the workflow (already configured)
+2. Configure DNS records with your domain provider
+3. Enable HTTPS in GitHub Pages settings
+
 ### 6. Self-Hosted / On-Premise
 
 For traditional hosting environments:

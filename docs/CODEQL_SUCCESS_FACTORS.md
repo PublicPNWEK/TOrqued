@@ -80,7 +80,7 @@ try {
 1. Keep lines under 120 characters
 2. Use proper semicolons (consistent with ESLint config)
 3. Format try-catch blocks on multiple lines
-4. Add spaces around operators (`===` not `===`)
+4. Add spaces around operators (`a === b` not `a===b`)
 5. Use consistent indentation (2 spaces)
 
 ### 4. Security Scanning Coverage

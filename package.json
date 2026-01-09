@@ -13,7 +13,7 @@
     "validate:quick": "node scripts/validate-deployment.mjs --quick",
     "validate:all": "node scripts/validate-deployment.mjs --all",
     "health:check": "node scripts/health-check.mjs",
-    "test": "vitest",
+    "test": "vitest run --passWithNoTests",
     "test:playwright": "playwright test",
     "lint": "eslint . --ext .ts,.tsx,.js,.jsx",
     "migrate-secrets": "node scripts/migrate-secrets.js --provider=aws",

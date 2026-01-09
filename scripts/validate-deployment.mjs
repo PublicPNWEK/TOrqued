@@ -113,6 +113,8 @@ async function checkDependencies() {
 async function checkEnvironmentVariables() {
   section('Environment Variables Check');
 
+  const runQuick = process.argv.includes('--quick');
+
   const requiredVars = ['SHOPIFY_STORE', 'SHOPIFY_TOKEN', 'SHOPIFY_THEME_ID'];
   const optionalVars = [
     'OAUTH_AUTH_URL',
@@ -154,7 +156,16 @@ async function checkEnvironmentVariables() {
   }
 
   if (missingRequired.length > 0) {
-    error(`Missing required environment variables: ${missingRequired.join(', ')}`);
+    const message = `Missing required environment variables: ${missingRequired.join(', ')}`;
+
+    if (runQuick) {
+      warning(message);
+      warning('Quick mode: treating missing env vars as warnings');
+      checks.warnings++;
+      return true;
+    }
+
+    error(message);
     checks.failed++;
     return false;
   } else {

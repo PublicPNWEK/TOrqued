@@ -449,6 +449,7 @@ For detailed information about these features, see [COMPETITIVE_ADVANTAGES.md](C
 - **[Platform-Agnostic Deployment Guide](docs/PLATFORM_AGNOSTIC_DEPLOYMENT.md)** - Deploy to GCP, AWS, or any cloud provider
 - **[Deployment Workflows](docs/DEPLOYMENT_WORKFLOWS.md)** - Detailed deployment procedures and CI/CD setup
 - **[Deployment Troubleshooting](docs/DEPLOYMENT_TROUBLESHOOTING.md)** - Comprehensive troubleshooting guide
+- **[CodeQL Success Factors](docs/CODEQL_SUCCESS_FACTORS.md)** - Security scanning best practices and CI optimization
 - **[GPG Setup Guide](docs/GPG_SETUP.md)** - Setting up GPG signing for commits
 - **[Theme Structure Guide](docs/THEME_STRUCTURE.md)** - Shopify theme architecture and customization
 
